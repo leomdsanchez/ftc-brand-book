@@ -235,6 +235,7 @@ main:focus, main > section:focus { outline: none; }
 
 /* Scroll-linked diagonal entrances and exits preserve each element's transform. */
 body { overflow-x: clip; }
+.workspace { overflow-x: clip; }
 .corner-reveal { opacity: var(--reveal-opacity, 1); translate: var(--reveal-x, 0px) var(--reveal-y, 0px); }
 @media (prefers-reduced-motion: reduce) {
   .corner-reveal { opacity: 1; translate: none; }
