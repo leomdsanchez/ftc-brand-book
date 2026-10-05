@@ -6,6 +6,8 @@ import zipfile
 
 root = Path(__file__).resolve().parent
 css = (root / "styles.css").read_text()
+crystals = base64.b64encode((root / "assets/glass-crystals.svg").read_bytes()).decode()
+css = css.replace("assets/glass-crystals.svg", "data:image/svg+xml;base64," + crystals)
 for name in ("Satoshi-Regular.woff2", "Satoshi-Medium.woff2", "Satoshi-Bold.woff2"):
     encoded = base64.b64encode((root / "assets" / name).read_bytes()).decode()
     css = css.replace("assets/" + name, "data:font/woff2;base64," + encoded)
