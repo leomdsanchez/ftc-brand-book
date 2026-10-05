@@ -60,22 +60,22 @@
 .state-cell .label { min-height: 34px; text-align: center; display: grid; place-items: center; letter-spacing: .6px; }
 .btn {
   font-size: 14px;
-  background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  background-image: linear-gradient(135deg, #fff calc(100% - 40px), transparent calc(100% - 40px)), linear-gradient(135deg, transparent 40px, #fff 40px);
   background-position: left center, right center;
   background-repeat: no-repeat;
   background-size: 0% 100%, 0% 100%;
   transition: background-size .4s cubic-bezier(.22, 1, .36, 1), color .3s ease, border-color .3s ease, box-shadow .18s;
 }
-/* Keep the two white fills behind the label and icons. */
+/* 45-degree right-leaning fronts; overlap fully behind labels and icons. */
 .btn.primary, .btn.secondary, .btn.ghost,
 .btn.primary.state-hover, .btn.secondary.state-hover, .btn.ghost.state-hover {
-  background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  background-image: linear-gradient(135deg, #fff calc(100% - 40px), transparent calc(100% - 40px)), linear-gradient(135deg, transparent 40px, #fff 40px);
   background-position: left center, right center;
   background-repeat: no-repeat;
   background-size: 0% 100%, 0% 100%;
 }
 .btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) {
-  background-size: 50.1% 100%, 50.1% 100%;
+  background-size: calc(50% + 64px) 100%, calc(50% + 64px) 100%;
   color: #000;
   border-color: #fff;
 }
@@ -85,7 +85,7 @@
 .btn:focus-visible, .btn.state-focus { outline: 2px solid var(--focus); outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
   .btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) {
-    background-size: 50.1% 100%, 50.1% 100%;
+    background-size: calc(50% + 64px) 100%, calc(50% + 64px) 100%;
     color: #000;
     border-color: #fff;
   }
