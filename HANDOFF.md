@@ -64,4 +64,4 @@ A abertura usa uma hierarquia tipográfica mais forte, um card com planos sobrep
 
 ## Glass e foco nos campos
 
-As seções usam superfícies translúcidas, desfoque de fundo e reflexos brancos discretos. Os painéis internos recebem uma camada mais leve. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 1,05 s, com aceleração e desaceleração suaves; o movimento reduzido continua desativando animações.
+Somente a abertura (`#overview`) demonstra glass em um painel delimitado com blur de 8 px. As outras seções, os cards internos, o cabeçalho, a navegação e os modais não usam desfoque de fundo. Nenhum blur é sobreposto a outro. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 1,05 s, com aceleração e desaceleração suaves; o movimento reduzido continua desativando animações.
