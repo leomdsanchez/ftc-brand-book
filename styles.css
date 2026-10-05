@@ -58,37 +58,21 @@
 .state-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .state-cell .btn { font-size: 13px; min-height: 48px; }
 .state-cell .label { min-height: 34px; text-align: center; display: grid; place-items: center; letter-spacing: .6px; }
-.btn {
-  font-size: 14px;
-  background-image: linear-gradient(135deg, #fff calc(100% - 40px), transparent calc(100% - 40px)), linear-gradient(135deg, transparent 40px, #fff 40px);
-  background-position: left center, right center;
-  background-repeat: no-repeat;
-  background-size: 0% 100%, 0% 100%;
-  transition: background-size .52s cubic-bezier(.22, 1, .36, 1), color .39s ease, border-color .39s ease, box-shadow .18s;
-}
-/* 45-degree right-leaning fronts; overlap fully behind labels and icons. */
-.btn.primary, .btn.secondary, .btn.ghost,
-.btn.primary.state-hover, .btn.secondary.state-hover, .btn.ghost.state-hover {
-  background-image: linear-gradient(135deg, #fff calc(100% - 40px), transparent calc(100% - 40px)), linear-gradient(135deg, transparent 40px, #fff 40px);
-  background-position: left center, right center;
-  background-repeat: no-repeat;
-  background-size: 0% 100%, 0% 100%;
-}
-.btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) {
-  background-size: calc(50% + 64px) 100%, calc(50% + 64px) 100%;
-  color: #000;
-  border-color: #fff;
-}
+/* Original-site hover: a skewed white band expands from the center. */
+.btn { font-size: 14px; position: relative; isolation: isolate; overflow: hidden; }
+.btn::after { content: ''; position: absolute; inset: 0 -20%; z-index: -1; background: #fff; pointer-events: none; transform-origin: center; transform: skewX(-45deg) scaleX(0); transition: transform .4s ease; }
+.btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) { color: #000; border-color: #fff; }
+.btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: skewX(-45deg) scaleX(1); }
 .btn.small, .sample-row .btn, .button-extras .btn { font-size: 13px; }
 .btn.large { font-size: 15px; }
 .btn.secondary { border-color: var(--border-control); }
 .btn:focus-visible, .btn.state-focus { outline: 2px solid var(--focus); outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
   .btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) {
-    background-size: calc(50% + 64px) 100%, calc(50% + 64px) 100%;
     color: #000;
     border-color: #fff;
   }
+  .btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: skewX(-45deg) scaleX(1); }
 }
 /* Pressed, disabled and busy states take precedence over hover. */
 .btn.primary:active, .btn.primary.state-pressed { background: var(--brand-pressed); color: #fff; }
@@ -499,7 +483,7 @@ footer { margin-top: 72px; padding: 28px 0 32px; border-color: #ffffff0d; font-s
 .type-specimen { background: radial-gradient(ellipse at 0% 100%, #ffffff05, transparent 75%); }
 .panel-toolbar { background: #ffffff02; }
 .btn {
-  transition: background-size .4s cubic-bezier(.37, 0, .25, 1), color .4s ease-in-out, border-color .4s ease-in-out, box-shadow .4s ease;
+  transition: color .4s ease, border-color .4s ease, box-shadow .4s ease;
 }
 .field > input, .input-wrap, textarea {
   transition: border-color .45s ease, box-shadow .6s ease, background-color .6s ease;
@@ -533,7 +517,7 @@ footer { margin-top: 72px; padding: 28px 0 32px; border-color: #ffffff0d; font-s
 
 /* Glass is confined to the central security sample. The scenery is static. */
 .glass-stage { padding: 52px 32px; background: #030404 url('assets/glass-crystals.svg') center / cover no-repeat; border-radius: 18px; overflow: hidden; }
-.glass-security { max-width: 740px; margin: 0 auto; padding: 48px 32px; text-align: center; border: 1px solid #ffffff0d; border-radius: 12px; background: linear-gradient(135deg, #ffffff04, #00000014), #080909b8; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.glass-security { max-width: 740px; margin: 0 auto; padding: 48px 32px; text-align: center; border: 0; border-radius: 12px; background: #00000033; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); }
 .glass-security h3 { font-size: clamp(28px, 3.2vw, 44px); line-height: 1.18; letter-spacing: -1.4px; font-weight: 700; }
 .glass-security > p { font-size: 18px; line-height: 1.4; margin: 20px auto 0; max-width: 560px; }
 .glass-assurances { display: table; list-style: none; padding: 0; margin: 34px auto 36px; text-align: left; }
