@@ -243,20 +243,49 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       dirty = true;
     }
     function measureSources() {
-      sources = [ ['.hero-art', 280, .9], ['.hero-actions .primary', 170, .65],
+      // Lights stay anchored to the page while scrolling. Overlapping, soft
+      // pools cover the whole theme without making every area equally bright.
+      const areaWidth = width - left;
+      const columns = Math.max(1, Math.ceil(areaWidth / 420));
+      const spacingX = areaWidth / columns;
+      const spacingY = 360;
+      const radius = Math.max(spacingX, spacingY) * 1.3;
+      const firstRow = Math.max(0, Math.floor((window.scrollY - radius - 160) / spacingY));
+      const lastRow = Math.ceil((window.scrollY + height + radius - 160) / spacingY);
+      sources = [];
+      for (let row = firstRow; row <= lastRow; row++) {
+        const y = 160 + row * spacingY - window.scrollY;
+        for (let column = 0; column < columns; column++) {
+          sources.push({ x: left + (column + .5) * spacingX, y, radius,
+            strength: .4 + ((row + column) % 3) * .04 });
+        }
+      }
+      // The fixed navigation and header get their own gentler light points.
+      if (left > 0) {
+        for (const fraction of [.22, .65, 1]) {
+          sources.push({ x: left * .5, y: height * fraction,
+            radius: Math.max(260, height * .45), strength: .28 });
+        }
+      }
+      sources.push({ x: left + areaWidth * .5, y: top * .5,
+        radius: Math.max(300, areaWidth * .6), strength: .24 });
+      sources.push(...[ ['.hero-art', 280, .9], ['.hero-actions .primary', 170, .65],
         ['#live-button', 170, .75], ['.balance-card', 230, .8] ].flatMap(([selector, radius, strength]) => {
         const element = $(selector);
         if (!element || !element.getClientRects().length) return [];
         const rect = element.getBoundingClientRect();
         if (rect.bottom < top - radius || rect.top > height + radius) return [];
         return [{ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, radius, strength }];
-      });
+      }));
       dirty = false;
     }
     function glow(source, white = false) {
       const gradient = ctx.createRadialGradient(source.x, source.y, 0, source.x, source.y, source.radius);
-      gradient.addColorStop(0, white ? `rgba(225,237,255,${source.strength * .035})` : `rgba(0,82,252,${source.strength * .075})`);
-      gradient.addColorStop(1, 'rgba(0,82,252,0)');
+      // Match the squared distance falloff used to illuminate each dust mote.
+      for (const distance of [0, .25, .5, .75, 1]) {
+        const alpha = source.strength * (1 - distance) ** 2;
+        gradient.addColorStop(distance, white ? `rgba(225,237,255,${alpha * .035})` : `rgba(0,82,252,${alpha * .12})`);
+      }
       ctx.fillStyle = gradient;
       ctx.fillRect(source.x - source.radius, source.y - source.radius, source.radius * 2, source.radius * 2);
     }
@@ -270,12 +299,12 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       const lights = [...sources];
       if (pointer.strength > .01) lights.push({ ...pointer, radius: 180 });
       ctx.clearRect(0, 0, width, height);
-      ctx.save(); ctx.beginPath(); ctx.rect(left, top, width - left, height - top); ctx.clip();
+      ctx.save();
       for (const source of sources) glow(source);
       if (pointer.strength > .01) glow({ ...pointer, radius: 180 }, true);
       for (const particle of particles) {
-        const x = left + particle.x * (width - left) + Math.sin(elapsed * .2 + particle.phase) * 12;
-        const y = top + ((particle.y * (height - top) - elapsed * particle.speed) % (height - top) + height - top) % (height - top);
+        const x = particle.x * width + Math.sin(elapsed * .2 + particle.phase) * 12;
+        const y = ((particle.y * height - elapsed * particle.speed) % height + height) % height;
         const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
         // No ambient visibility floor: unlit dust fades completely away.
         const light = Math.max(0, (illumination - .025) / .975);
