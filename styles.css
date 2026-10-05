@@ -242,13 +242,13 @@ body { overflow-x: clip; }
 }
 @media print { .corner-reveal { opacity: 1; translate: none; } }
 
-/* Soft lights cover the theme, with stronger accents on its main actions. */
+/* Soft white light and restrained shadows keep the atmosphere understated. */
 .atmosphere { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 31; pointer-events: none; }
-.hero-art { background: radial-gradient(ellipse at 50% 60%, #0052fc25, transparent 72%); }
-.hero-card { border-color: #8eb2ff38; box-shadow: 0 24px 60px #0008, 0 0 90px #0052fc20; }
-.balance-card { background: radial-gradient(circle at 95% 0%, #0052fc1c, transparent 65%), var(--surface); box-shadow: 0 0 42px #0052fc0b; }
-.playground { background: radial-gradient(ellipse at 100% 50%, #0052fc18, transparent 75%), #101217; border-color: #0052fc40; }
+.hero-art { background: radial-gradient(ellipse at 50% 60%, #ffffff0e, transparent 72%); }
+.hero-card { background: linear-gradient(150deg, #1b1b1b, #101010 65%); border-color: #ffffff24; box-shadow: 0 20px 48px #0006, 0 0 70px #ffffff06; }
+.balance-card { background: radial-gradient(circle at 95% 0%, #ffffff08, transparent 65%), var(--surface); box-shadow: 0 0 32px #ffffff03; }
+.playground { background: radial-gradient(ellipse at 100% 50%, #ffffff06, transparent 75%), #101010; border-color: #ffffff24; }
 @media (hover: hover) and (pointer: fine) {
-  .btn.primary:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(:active):not(.state-pressed) { box-shadow: 0 0 22px #ffffff24, 0 0 48px #0052fc20; }
+  .btn.primary:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(:active):not(.state-pressed) { box-shadow: 0 0 18px #ffffff18, 0 0 36px #ffffff08; }
 }
 @media (prefers-reduced-motion: reduce) { .atmosphere { display: none; } }

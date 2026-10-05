@@ -306,12 +306,12 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       left = width > 760 ? $('#sidebar').getBoundingClientRect().right : 0;
       top = $('.topbar').getBoundingClientRect().bottom;
-      const count = width < 760 ? 16 : 34;
+      const count = width < 760 ? 10 : 22;
       clouds = $$('main > section').map(section => ({
         section,
         particles: Array.from({ length: count }, () => ({
-          x: Math.random() * 2 - 1, y: Math.random(), size: .45 + Math.random() * .95,
-          speed: 3 + Math.random() * 6, phase: Math.random() * Math.PI * 2, opacity: 0
+          x: Math.random() * 2 - 1, y: Math.random(), size: .35 + Math.random() * .65,
+          speed: 2 + Math.random() * 4, phase: Math.random() * Math.PI * 2, opacity: 0
         }))
       }));
       dirty = true;
@@ -362,12 +362,12 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       }));
       dirty = false;
     }
-    function glow(source, white = false) {
+    function glow(source, emphasis = false) {
       const gradient = ctx.createRadialGradient(source.x, source.y, 0, source.x, source.y, source.radius);
       // Match the squared distance falloff used to illuminate each dust mote.
       for (const distance of [0, .25, .5, .75, 1]) {
         const alpha = source.strength * (1 - distance) ** 2;
-        gradient.addColorStop(distance, white ? `rgba(225,237,255,${alpha * .035})` : `rgba(0,82,252,${alpha * .12})`);
+        gradient.addColorStop(distance, `rgba(255,255,255,${alpha * (emphasis ? .05 : .04)})`);
       }
       ctx.fillStyle = gradient;
       ctx.fillRect(source.x - source.radius, source.y - source.radius, source.radius * 2, source.radius * 2);
@@ -397,16 +397,16 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
           const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
           // No ambient visibility floor: unlit dust fades completely away.
           const light = Math.max(0, (illumination - .025) / .975);
-          const targetAlpha = Math.pow(light, .75) * .75 * Math.sqrt(edge);
+          const targetAlpha = Math.pow(light, .75) * .58 * Math.sqrt(edge);
           particle.opacity += (targetAlpha - particle.opacity) * (1 - Math.exp(-delta * 9));
           const alpha = particle.opacity;
           if (alpha < .012) continue;
-          if (illumination > .12) {
-            const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 4);
-            halo.addColorStop(0, `rgba(160,199,255,${alpha * .4})`); halo.addColorStop(1, 'rgba(160,199,255,0)');
-            ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 4, 0, Math.PI * 2); ctx.fill();
+          if (illumination > .3) {
+            const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 2.8);
+            halo.addColorStop(0, `rgba(255,255,255,${alpha * .2})`); halo.addColorStop(1, 'rgba(255,255,255,0)');
+            ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 2.8, 0, Math.PI * 2); ctx.fill();
           }
-          ctx.fillStyle = `rgba(225,237,255,${alpha})`;
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
           ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
         }
       }
