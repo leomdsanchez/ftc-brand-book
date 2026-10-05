@@ -279,7 +279,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
     document.body.append(canvas);
     const ctx = canvas.getContext('2d');
     if (!ctx) { canvas.remove(); return; }
-    let width, height, left, top, particles = [], sources = [], dirty = true;
+    let width, height, left, top, clouds = [], sources = [], dirty = true;
     let frame = null, last = 0, elapsed = 0;
     const pointer = { x: 0, y: 0, strength: 0, target: 0 };
     function resize() {
@@ -289,14 +289,26 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       left = width > 760 ? $('#sidebar').getBoundingClientRect().right : 0;
       top = $('.topbar').getBoundingClientRect().bottom;
-      const count = Math.min(width < 760 ? 70 : 220, Math.round(width * height / 5000));
-      particles = Array.from({ length: count }, () => ({
-        x: Math.random(), y: Math.random(), size: .45 + Math.random() * .95,
-        speed: 3 + Math.random() * 6, phase: Math.random() * Math.PI * 2, opacity: 0
+      const count = width < 760 ? 16 : 34;
+      clouds = $$('main > section').map(section => ({
+        section,
+        particles: Array.from({ length: count }, () => ({
+          x: Math.random() * 2 - 1, y: Math.random(), size: .45 + Math.random() * .95,
+          speed: 3 + Math.random() * 6, phase: Math.random() * Math.PI * 2, opacity: 0
+        }))
       }));
       dirty = true;
     }
     function measureSources() {
+      for (const cloud of clouds) {
+        const rect = cloud.section.getBoundingClientRect();
+        // A compact elliptical pocket belongs to each section, rather than
+        // a screen-wide field. Its edge dissolves before reaching the gutters.
+        cloud.x = rect.left + rect.width / 2;
+        cloud.y = rect.top + rect.height / 2;
+        cloud.rx = Math.min(320, rect.width * .35);
+        cloud.ry = Math.min(200, rect.height * .32);
+      }
       // Lights stay anchored to the page while scrolling. Overlapping, soft
       // pools cover the whole theme without making every area equally bright.
       const areaWidth = width - left;
@@ -356,23 +368,30 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       ctx.save();
       for (const source of sources) glow(source);
       if (pointer.strength > .01) glow({ ...pointer, radius: 180 }, true);
-      for (const particle of particles) {
-        const x = particle.x * width + Math.sin(elapsed * .2 + particle.phase) * 12;
-        const y = ((particle.y * height - elapsed * particle.speed) % height + height) % height;
-        const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
-        // No ambient visibility floor: unlit dust fades completely away.
-        const light = Math.max(0, (illumination - .025) / .975);
-        const targetAlpha = Math.pow(light, .75) * .75;
-        particle.opacity += (targetAlpha - particle.opacity) * (1 - Math.exp(-delta * 9));
-        const alpha = particle.opacity;
-        if (alpha < .012) continue;
-        if (illumination > .12) {
-          const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 4);
-          halo.addColorStop(0, `rgba(160,199,255,${alpha * .4})`); halo.addColorStop(1, 'rgba(160,199,255,0)');
-          ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 4, 0, Math.PI * 2); ctx.fill();
+      for (const cloud of clouds) {
+        if (cloud.y + cloud.ry < top || cloud.y - cloud.ry > height) continue;
+        for (const particle of cloud.particles) {
+          const localX = particle.x * cloud.rx + Math.sin(elapsed * .2 + particle.phase) * 8;
+          const span = cloud.ry * 2;
+          const localY = ((particle.y * span - elapsed * particle.speed) % span + span) % span - cloud.ry;
+          const x = cloud.x + localX, y = cloud.y + localY;
+          const edge = Math.max(0, 1 - Math.hypot(localX / cloud.rx, localY / cloud.ry));
+          if (edge === 0 || y < top) { particle.opacity = 0; continue; }
+          const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
+          // No ambient visibility floor: unlit dust fades completely away.
+          const light = Math.max(0, (illumination - .025) / .975);
+          const targetAlpha = Math.pow(light, .75) * .75 * Math.sqrt(edge);
+          particle.opacity += (targetAlpha - particle.opacity) * (1 - Math.exp(-delta * 9));
+          const alpha = particle.opacity;
+          if (alpha < .012) continue;
+          if (illumination > .12) {
+            const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 4);
+            halo.addColorStop(0, `rgba(160,199,255,${alpha * .4})`); halo.addColorStop(1, 'rgba(160,199,255,0)');
+            ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 4, 0, Math.PI * 2); ctx.fill();
+          }
+          ctx.fillStyle = `rgba(225,237,255,${alpha})`;
+          ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
         }
-        ctx.fillStyle = `rgba(225,237,255,${alpha})`;
-        ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
       }
       ctx.restore();
     }
@@ -384,6 +403,10 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       else ctx.clearRect(0, 0, width, height);
     }
     window.addEventListener('resize', resize);
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(() => { dirty = true; });
+      $$('main > section').forEach(section => observer.observe(section));
+    }
     window.addEventListener('scroll', () => { dirty = true; pointer.target = 0; }, { passive: true });
     window.addEventListener('pointermove', event => {
       pointer.x = event.clientX; pointer.y = event.clientY;
