@@ -217,78 +217,6 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
   window.addEventListener('scroll',()=>{if(scrollFrame)return;scrollFrame=requestAnimationFrame(()=>{updateActiveSection();scrollFrame=null;});},{passive:true});
   window.addEventListener('resize',updateActiveSection);updateActiveSection();
 
-  function initScrollReveal() {
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const groups = '.hero-grid, .overview-strip, .palette, .token-details, .type-panel, .button-extras, .controls-grid, .portfolio-grid, .feedback-grid, .rules-grid';
-    const targets = $$('main > section > *').flatMap(element =>
-      element.matches(groups) ? [...element.children] : [element]);
-    const items = targets.map(element => ({ element, x: 0, y: 0, opacity: 1 }));
-    let frame = null, dirty = true, initialized = false, last = 0;
-    function update(now = performance.now()) {
-      frame = null;
-      const delta = Math.min(.05, Math.max(0, (now - last) / 1000));
-      last = now;
-      // Smooth wheel/trackpad steps without adding a permanent animation loop.
-      const blend = 1 - Math.exp(-delta / .16);
-      let settling = false;
-      const height = innerHeight;
-      const header = $('.topbar').getBoundingClientRect().bottom;
-      const zone = Math.min(320, (height - header) * .38);
-      const exitBand = Math.min(160, (height - header) * .2);
-      const content = $('#main').getBoundingClientRect();
-      if (dirty) {
-        items.forEach((item, index) => {
-          const rect = item.element.getBoundingClientRect();
-          item.top = rect.top - item.y + window.scrollY;
-          item.height = rect.height;
-          const center = rect.left - item.x + rect.width / 2;
-          const middle = content.left + content.width / 2;
-          item.side = Math.abs(center - middle) < 40 ? (index % 2 ? 1 : -1) : (center < middle ? -1 : 1);
-        });
-        dirty = false;
-      }
-      items.forEach(item => {
-        const top = item.top - window.scrollY;
-        const bottom = top + item.height;
-        const entering = (height - top) / zone;
-        const exitZone = Math.min(exitBand, Math.max(1, item.top + item.height - header));
-        const leaving = (bottom - header) / exitZone;
-        let amount = Math.max(0, Math.min(1, entering, leaving));
-        const instant = motion.matches || item.element.contains(document.activeElement);
-        if (instant) amount = 1;
-        const eased = amount * amount * (3 - 2 * amount);
-        const distance = 1 - eased;
-        const targetX = item.side * distance * Math.min(210, innerWidth * .18);
-        const targetY = (entering < leaving ? 1 : -1) * distance * 72;
-        const factor = instant || !initialized ? 1 : blend;
-        item.opacity += (eased - item.opacity) * factor;
-        item.x += (targetX - item.x) * factor;
-        item.y += (targetY - item.y) * factor;
-        if (Math.abs(eased - item.opacity) < .002) item.opacity = eased;
-        if (Math.abs(targetX - item.x) < .1) item.x = targetX;
-        if (Math.abs(targetY - item.y) < .1) item.y = targetY;
-        if (item.opacity !== eased || item.x !== targetX || item.y !== targetY) settling = true;
-        item.element.style.setProperty('--reveal-opacity', item.opacity.toFixed(3));
-        item.element.style.setProperty('--reveal-x', `${item.x.toFixed(2)}px`);
-        item.element.style.setProperty('--reveal-y', `${item.y.toFixed(2)}px`);
-        item.element.classList.add('corner-reveal');
-      });
-      initialized = true;
-      if (settling) schedule();
-    }
-    function schedule() { if (frame === null) frame = requestAnimationFrame(update); }
-    window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', () => { dirty = true; schedule(); });
-    document.addEventListener('focusin', schedule);
-    document.addEventListener('focusout', schedule);
-    motion.addEventListener('change', schedule);
-    if ('ResizeObserver' in window) {
-      const observer = new ResizeObserver(() => { dirty = true; schedule(); });
-      $$('main > section').forEach(section => observer.observe(section));
-    }
-    update();
-  }
-
   function initAtmosphere() {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const canvas = document.createElement('canvas');
@@ -502,6 +430,5 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
     if (document.activeElement?.matches?.(textField)) focusField(document.activeElement);
     sync();
   }
-  initScrollReveal();
   initAtmosphere();
 })();

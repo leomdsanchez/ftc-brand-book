@@ -50,9 +50,9 @@ O botão **Exportar tokens** lê os mesmos valores CSS que a página usa. Os est
 
 Os valores financeiros e as interações são exemplos fictícios. Adapte os handlers e estados de retorno às regras do seu sistema.
 
-## Movimento na rolagem
+## Rolagem sem animações
 
-Títulos, painéis e cards entram diagonalmente pelos cantos inferiores e saem pelos cantos superiores, com opacidade ligada à posição na tela. Uma faixa gradual de entrada, saída próxima à borda superior e deslocamentos menores e amortecimento de 160 ms suavizam os passos da roda do mouse ou do trackpad. A animação termina ao estabilizar, sem manter um loop ocioso. O efeito funciona nos dois sentidos da rolagem e se repete ao retornar à seção. O conteúdo fica totalmente visível na área de leitura; elementos com foco, impressão e movimento reduzido permanecem visíveis sem deslocamento.
+Títulos, painéis e cards permanecem visíveis, sem entrada, saída, deslocamento ou mudança de opacidade ligados à rolagem. A navegação por âncoras é imediata. O menu continua indicando a seção atual.
 
 ## Iluminação e poeira
 
