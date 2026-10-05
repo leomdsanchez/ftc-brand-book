@@ -15,7 +15,7 @@ Tamanhos: `small` (44 px), padrão (48 px) e `large` (56 px). `icon-only` exige 
 | Estado | Gatilho real | Contrato |
 | --- | --- | --- |
 | Padrão | Sem interação | Mantém a variante |
-| Hover | Ponteiro com suporte a hover | Branco entra com frentes inclinadas 45° para a direita, simultaneamente pelas laterais esquerda e direita até o centro em 400 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
+| Hover | Ponteiro com suporte a hover | Branco entra com frentes inclinadas 45° para a direita, simultaneamente pelas laterais esquerda e direita até o centro em 520 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
 | Pressionado | `:active` por mouse, toque ou teclado | Reforça a ativação até a liberação |
 | Foco | `:focus-visible` | Contorno externo de 2 px; preserva o fundo do estado atual |
 | Desabilitado | Atributo nativo `disabled` | Bloqueia ativação e mantém a aparência sob hover |
@@ -49,3 +49,7 @@ O botão **Exportar tokens** lê os mesmos valores CSS que a página usa. Os est
 - `build.py`: gera o HTML único e o ZIP a partir dos arquivos separados; execute `python build.py` depois de alterá-los.
 
 Os valores financeiros e as interações são exemplos fictícios. Adapte os handlers e estados de retorno às regras do seu sistema.
+
+## Iluminação e poeira
+
+A abertura, a ação de compra e o saldo da carteira concentram a luz azul da marca. Partículas pequenas de poeira aumentam o brilho ao atravessar essas áreas; perto de uma ação principal sob o ponteiro, a luz fica branca. A camada decorativa não recebe cliques, fica fora da árvore acessível, pausa em abas ocultas e é desativada com movimento reduzido. A animação usa até 30 quadros por segundo e reduz a quantidade de partículas em telas pequenas.

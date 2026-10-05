@@ -216,4 +216,96 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
   let scrollFrame;
   window.addEventListener('scroll',()=>{if(scrollFrame)return;scrollFrame=requestAnimationFrame(()=>{updateActiveSection();scrollFrame=null;});},{passive:true});
   window.addEventListener('resize',updateActiveSection);updateActiveSection();
+
+  function initAtmosphere() {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const canvas = document.createElement('canvas');
+    canvas.className = 'atmosphere';
+    canvas.setAttribute('aria-hidden', 'true');
+    document.body.append(canvas);
+    const ctx = canvas.getContext('2d');
+    if (!ctx) { canvas.remove(); return; }
+    let width, height, left, top, particles = [], sources = [], dirty = true;
+    let frame = null, last = 0, elapsed = 0;
+    const pointer = { x: 0, y: 0, strength: 0, target: 0 };
+    function resize() {
+      width = innerWidth; height = innerHeight;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      left = width > 760 ? $('#sidebar').getBoundingClientRect().right : 0;
+      top = $('.topbar').getBoundingClientRect().bottom;
+      const count = Math.min(width < 760 ? 32 : 80, Math.round(width * height / 16000));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random(), y: Math.random(), size: .45 + Math.random() * .95,
+        speed: 3 + Math.random() * 6, phase: Math.random() * Math.PI * 2
+      }));
+      dirty = true;
+    }
+    function measureSources() {
+      sources = [ ['.hero-art', 280, .9], ['.hero-actions .primary', 170, .65],
+        ['#live-button', 170, .75], ['.balance-card', 230, .8] ].flatMap(([selector, radius, strength]) => {
+        const element = $(selector);
+        if (!element || !element.getClientRects().length) return [];
+        const rect = element.getBoundingClientRect();
+        if (rect.bottom < top - radius || rect.top > height + radius) return [];
+        return [{ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2, radius, strength }];
+      });
+      dirty = false;
+    }
+    function glow(source, white = false) {
+      const gradient = ctx.createRadialGradient(source.x, source.y, 0, source.x, source.y, source.radius);
+      gradient.addColorStop(0, white ? `rgba(225,237,255,${source.strength * .035})` : `rgba(0,82,252,${source.strength * .075})`);
+      gradient.addColorStop(1, 'rgba(0,82,252,0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(source.x - source.radius, source.y - source.radius, source.radius * 2, source.radius * 2);
+    }
+    function draw(now) {
+      frame = requestAnimationFrame(draw);
+      if (last && now - last < 1000 / 30) return;
+      const delta = last ? Math.min((now - last) / 1000, .05) : 0;
+      last = now; elapsed += delta;
+      if (dirty) measureSources();
+      pointer.strength += (pointer.target - pointer.strength) * .12;
+      const lights = [...sources];
+      if (pointer.strength > .01) lights.push({ ...pointer, radius: 180 });
+      ctx.clearRect(0, 0, width, height);
+      ctx.save(); ctx.beginPath(); ctx.rect(left, top, width - left, height - top); ctx.clip();
+      for (const source of sources) glow(source);
+      if (pointer.strength > .01) glow({ ...pointer, radius: 180 }, true);
+      for (const particle of particles) {
+        const x = left + particle.x * (width - left) + Math.sin(elapsed * .2 + particle.phase) * 12;
+        const y = top + ((particle.y * (height - top) - elapsed * particle.speed) % (height - top) + height - top) % (height - top);
+        const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
+        const alpha = .035 + illumination * .5;
+        if (illumination > .12) {
+          const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 4);
+          halo.addColorStop(0, `rgba(160,199,255,${illumination * .22})`); halo.addColorStop(1, 'rgba(160,199,255,0)');
+          ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 4, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.fillStyle = `rgba(225,237,255,${alpha})`;
+        ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
+      }
+      ctx.restore();
+    }
+    function sync() {
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null; last = 0;
+      canvas.hidden = motion.matches;
+      if (!motion.matches && !document.hidden) { dirty = true; frame = requestAnimationFrame(draw); }
+      else ctx.clearRect(0, 0, width, height);
+    }
+    window.addEventListener('resize', resize);
+    window.addEventListener('scroll', () => { dirty = true; pointer.target = 0; }, { passive: true });
+    window.addEventListener('pointermove', event => {
+      pointer.x = event.clientX; pointer.y = event.clientY;
+      const action = event.target.closest?.('.btn.primary');
+      pointer.target = event.pointerType !== 'touch' && action && !action.disabled && action.getAttribute('aria-disabled') !== 'true' && action.getAttribute('aria-busy') !== 'true' ? 1 : 0;
+    }, { passive: true });
+    document.documentElement.addEventListener('pointerleave', () => { pointer.target = 0; });
+    document.addEventListener('visibilitychange', sync);
+    motion.addEventListener('change', sync);
+    resize(); sync();
+  }
+  initAtmosphere();
 })();

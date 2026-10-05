@@ -64,7 +64,7 @@
   background-position: left center, right center;
   background-repeat: no-repeat;
   background-size: 0% 100%, 0% 100%;
-  transition: background-size .4s cubic-bezier(.22, 1, .36, 1), color .3s ease, border-color .3s ease, box-shadow .18s;
+  transition: background-size .52s cubic-bezier(.22, 1, .36, 1), color .39s ease, border-color .39s ease, box-shadow .18s;
 }
 /* 45-degree right-leaning fronts; overlap fully behind labels and icons. */
 .btn.primary, .btn.secondary, .btn.ghost,
@@ -232,3 +232,14 @@ main:focus, main > section:focus { outline: none; }
   .color-info small { font-size: 11px; }
   .spacing-list { flex-wrap: wrap; height: auto; gap: 15px; }
 }
+
+/* Light stays concentrated on the main actions; dust never captures input. */
+.atmosphere { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 25; pointer-events: none; }
+.hero-art { background: radial-gradient(ellipse at 50% 60%, #0052fc25, transparent 72%); }
+.hero-card { border-color: #8eb2ff38; box-shadow: 0 24px 60px #0008, 0 0 90px #0052fc20; }
+.balance-card { background: radial-gradient(circle at 95% 0%, #0052fc1c, transparent 65%), var(--surface); box-shadow: 0 0 42px #0052fc0b; }
+.playground { background: radial-gradient(ellipse at 100% 50%, #0052fc18, transparent 75%), #101217; border-color: #0052fc40; }
+@media (hover: hover) and (pointer: fine) {
+  .btn.primary:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(:active):not(.state-pressed) { box-shadow: 0 0 22px #ffffff24, 0 0 48px #0052fc20; }
+}
+@media (prefers-reduced-motion: reduce) { .atmosphere { display: none; } }
