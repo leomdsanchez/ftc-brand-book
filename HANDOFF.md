@@ -15,7 +15,7 @@ Tamanhos: `small` (44 px), padrão (48 px) e `large` (56 px). `icon-only` exige 
 | Estado | Gatilho real | Contrato |
 | --- | --- | --- |
 | Padrão | Sem interação | Mantém a variante |
-| Hover | Ponteiro com suporte a hover | Branco entra com frentes inclinadas 45° para a direita, simultaneamente pelas laterais esquerda e direita até o centro em 520 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
+| Hover | Ponteiro com suporte a hover | Branco entra com frentes inclinadas 45° para a direita, simultaneamente pelas laterais esquerda e direita até o centro em 400 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
 | Pressionado | `:active` por mouse, toque ou teclado | Reforça a ativação até a liberação |
 | Foco | `:focus-visible` | Contorno externo de 2 px; preserva o fundo do estado atual |
 | Desabilitado | Atributo nativo `disabled` | Bloqueia ativação e mantém a aparência sob hover |
@@ -64,4 +64,4 @@ A abertura usa uma hierarquia tipográfica mais forte, um card com planos sobrep
 
 ## Glass e foco nos campos
 
-Somente a abertura (`#overview`) demonstra glass em um painel delimitado com blur de 8 px. As outras seções, os cards internos, o cabeçalho, a navegação e os modais não usam desfoque de fundo. Nenhum blur é sobreposto a outro. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 1,05 s, com aceleração e desaceleração suaves; o movimento reduzido continua desativando animações.
+Somente a abertura (`#overview`) demonstra glass em um painel delimitado com blur de 8 px. As outras seções, os cards internos, o cabeçalho, a navegação e os modais não usam desfoque de fundo. Nenhum blur é sobreposto a outro. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 400 ms, com aceleração e desaceleração suaves; o movimento reduzido continua desativando animações.
