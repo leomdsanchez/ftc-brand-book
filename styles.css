@@ -58,19 +58,41 @@
 .state-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .state-cell .btn { font-size: 13px; min-height: 48px; }
 .state-cell .label { min-height: 34px; text-align: center; display: grid; place-items: center; letter-spacing: .6px; }
-.btn { font-size: 14px; }
+.btn {
+  font-size: 14px;
+  background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  background-position: left center, right center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%, 0% 100%;
+  transition: background-size .4s cubic-bezier(.22, 1, .36, 1), color .3s ease, border-color .3s ease, box-shadow .18s;
+}
+/* Keep the two white fills behind the label and icons. */
+.btn.primary, .btn.secondary, .btn.ghost,
+.btn.primary.state-hover, .btn.secondary.state-hover, .btn.ghost.state-hover {
+  background-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+  background-position: left center, right center;
+  background-repeat: no-repeat;
+  background-size: 0% 100%, 0% 100%;
+}
+.btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) {
+  background-size: 50.1% 100%, 50.1% 100%;
+  color: #000;
+  border-color: #fff;
+}
 .btn.small, .sample-row .btn, .button-extras .btn { font-size: 13px; }
 .btn.large { font-size: 15px; }
 .btn.secondary { border-color: var(--border-control); }
 .btn:focus-visible, .btn.state-focus { outline: 2px solid var(--focus); outline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
-  .btn.primary:hover { background: var(--brand-hover); }
-  .btn.secondary:hover { background: #262626; border-color: #888; }
-  .btn.ghost:hover { background: #ffffff08; color: #fff; }
+  .btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) {
+    background-size: 50.1% 100%, 50.1% 100%;
+    color: #000;
+    border-color: #fff;
+  }
 }
 /* Pressed, disabled and busy states take precedence over hover. */
-.btn.primary:active, .btn.primary.state-pressed { background: var(--brand-pressed); }
-.btn.secondary:active, .btn.secondary.state-pressed { background: #101010; border-color: #888; }
+.btn.primary:active, .btn.primary.state-pressed { background: var(--brand-pressed); color: #fff; }
+.btn.secondary:active, .btn.secondary.state-pressed { background: #101010; border-color: #888; color: #ededed; }
 .btn.ghost:active, .btn.ghost.state-pressed { background: #ffffff10; color: #fff; }
 .btn.secondary.state-hover { border-color: #888; }
 .btn:disabled, .btn:disabled:hover, .btn:disabled:active {

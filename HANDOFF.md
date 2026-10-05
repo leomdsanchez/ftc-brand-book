@@ -15,7 +15,7 @@ Tamanhos: `small` (44 px), padrão (48 px) e `large` (56 px). `icon-only` exige 
 | Estado | Gatilho real | Contrato |
 | --- | --- | --- |
 | Padrão | Sem interação | Mantém a variante |
-| Hover | Ponteiro com suporte a hover | Muda o fundo; não sobrepõe pressionado, desabilitado ou carregamento |
+| Hover | Ponteiro com suporte a hover | Branco entra simultaneamente pelas laterais esquerda e direita até o centro em 400 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
 | Pressionado | `:active` por mouse, toque ou teclado | Reforça a ativação até a liberação |
 | Foco | `:focus-visible` | Contorno externo de 2 px; preserva o fundo do estado atual |
 | Desabilitado | Atributo nativo `disabled` | Bloqueia ativação e mantém a aparência sob hover |
