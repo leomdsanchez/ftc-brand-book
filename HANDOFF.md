@@ -61,3 +61,7 @@ Pontos de luz branca suave cobrem toda a página, a navegação e o cabeçalho. 
 ## Composição visual
 
 A abertura usa uma hierarquia tipográfica mais forte, um card com planos sobrepostos e indicadores agrupados. As seções compartilham espaçamentos, divisores discretos, superfícies neutras e cantos consistentes. A navegação usa uma marca lateral azul para indicar a seção ativa. Em telas menores, a ilustração permanece visível, os indicadores ficam em duas colunas e os painéis se reorganizam sem reduzir os alvos de toque. A fonte Satoshi, o azul da marca, os estados dos botões e a iluminação branca definem a identidade da composição.
+
+## Glass e foco nos campos
+
+As seções usam superfícies translúcidas, desfoque de fundo e reflexos brancos discretos. Os painéis internos recebem uma camada mais leve. Ao focar um campo de texto, aparece uma luz branca suave e duas correntes com poucas partículas ao longo das bordas, sem passar sobre o texto digitado. A luz acompanha o campo durante a rolagem e desvanece ao perder o foco. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 1,05 s, com aceleração e desaceleração suaves; o movimento reduzido continua desativando animações.

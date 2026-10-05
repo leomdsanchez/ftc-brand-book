@@ -300,6 +300,22 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
     let width, height, left, top, clouds = [], sources = [], dirty = true;
     let frame = null, last = 0, elapsed = 0;
     const pointer = { x: 0, y: 0, strength: 0, target: 0 };
+    const textField = 'input:not([type]), input[type="text"], input[type="email"], input[type="search"], input[type="number"], input[type="tel"], input[type="url"], input[type="password"], textarea, [contenteditable="true"]';
+    let focusEffects = [];
+    function focusField(element) {
+      focusEffects.forEach(effect => { effect.target = 0; });
+      let effect = focusEffects.find(item => item.element === element);
+      if (!effect) {
+        effect = { element, host: element.closest('.input-wrap') || element,
+          strength: 0, target: 1,
+          particles: Array.from({ length: width < 760 ? 6 : 8 }, (_, index) => ({
+            phase: Math.random(), lane: index % 2, size: .65 + Math.random() * .5,
+            speed: 22 + Math.random() * 16
+          })) };
+        focusEffects.push(effect);
+      }
+      effect.target = 1;
+    }
     function resize() {
       width = innerWidth; height = innerHeight;
       const dpr = Math.min(devicePixelRatio || 1, 2);
@@ -373,6 +389,34 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       ctx.fillStyle = gradient;
       ctx.fillRect(source.x - source.radius, source.y - source.radius, source.radius * 2, source.radius * 2);
     }
+    function fieldGlow(effect) {
+      const rect = effect.rect;
+      ctx.save();
+      ctx.translate(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      ctx.scale(rect.width / 2 + 32, rect.height / 2 + 32);
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+      gradient.addColorStop(0, `rgba(255,255,255,${effect.strength * .045})`);
+      gradient.addColorStop(.55, `rgba(255,255,255,${effect.strength * .025})`);
+      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gradient; ctx.fillRect(-1, -1, 2, 2);
+      ctx.restore();
+    }
+    function fieldParticles(effect) {
+      const rect = effect.rect;
+      for (const particle of effect.particles) {
+        // Two slow streams follow the field edges and leave its text clear.
+        const progress = (particle.phase + elapsed * particle.speed / rect.width) % 1;
+        const x = rect.left + progress * rect.width;
+        const y = rect.top + (particle.lane ? rect.height + 4 : -4)
+          + Math.sin(elapsed * .65 + particle.phase * Math.PI * 2) * 3;
+        const alpha = effect.strength * Math.sin(progress * Math.PI) ** 2 * .55;
+        ctx.strokeStyle = `rgba(255,255,255,${alpha * .3})`;
+        ctx.lineWidth = .6;
+        ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x, y); ctx.stroke();
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
+      }
+    }
     function draw(now) {
       frame = requestAnimationFrame(draw);
       if (last && now - last < 1000 / 30) return;
@@ -382,10 +426,22 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       pointer.strength += (pointer.target - pointer.strength) * .12;
       const lights = [...sources];
       if (pointer.strength > .01) lights.push({ ...pointer, radius: 180 });
+      focusEffects = focusEffects.filter(effect => effect.element.isConnected && (effect.target || effect.strength > .006));
+      const visibleFields = [];
+      for (const effect of focusEffects) {
+        effect.strength += (effect.target - effect.strength) * (1 - Math.exp(-delta * 6));
+        effect.rect = effect.host.getBoundingClientRect();
+        const rect = effect.rect;
+        if (!rect.width || !rect.height || rect.bottom < top || rect.top > height) continue;
+        visibleFields.push(effect);
+        lights.push({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2,
+          radius: Math.max(110, Math.min(200, rect.width * .55)), strength: effect.strength * .8 });
+      }
       ctx.clearRect(0, 0, width, height);
       ctx.save();
       for (const source of sources) glow(source);
       if (pointer.strength > .01) glow({ ...pointer, radius: 180 }, true);
+      visibleFields.forEach(fieldGlow);
       for (const cloud of clouds) {
         if (cloud.y + cloud.ry < top || cloud.y - cloud.ry > height) continue;
         for (const particle of cloud.particles) {
@@ -411,6 +467,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
           ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
         }
       }
+      visibleFields.forEach(fieldParticles);
       ctx.restore();
     }
     function sync() {
@@ -432,9 +489,18 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       pointer.target = event.pointerType !== 'touch' && action && !action.disabled && action.getAttribute('aria-disabled') !== 'true' && action.getAttribute('aria-busy') !== 'true' ? 1 : 0;
     }, { passive: true });
     document.documentElement.addEventListener('pointerleave', () => { pointer.target = 0; });
+    document.addEventListener('focusin', event => {
+      if (event.target.matches?.(textField)) focusField(event.target);
+    });
+    document.addEventListener('focusout', event => {
+      const effect = focusEffects.find(item => item.element === event.target);
+      if (effect) effect.target = 0;
+    });
     document.addEventListener('visibilitychange', sync);
     motion.addEventListener('change', sync);
-    resize(); sync();
+    resize();
+    if (document.activeElement?.matches?.(textField)) focusField(document.activeElement);
+    sync();
   }
   initScrollReveal();
   initAtmosphere();

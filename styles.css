@@ -480,3 +480,66 @@ footer { margin-top: 72px; padding: 28px 0 32px; border-color: #ffffff0d; font-s
   .subtitle-example { font-size: 22px; }
   .closing > div { align-items: flex-start; }
 }
+
+/* Frosted sections and a restrained white focus light. */
+body {
+  background-image: radial-gradient(ellipse at 72% 18%, #ffffff08, transparent 42%), radial-gradient(ellipse at 32% 74%, #ffffff05, transparent 44%);
+  background-attachment: fixed;
+}
+.overview, .book-section {
+  border: 1px solid #ffffff17;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff08, #ffffff02 65%), #0c0c0c70;
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
+  backdrop-filter: blur(16px) saturate(110%);
+  box-shadow: inset 0 1px 0 #ffffff08, 0 24px 60px #0003;
+}
+.overview { margin-top: 36px; padding: 36px 32px 32px; }
+.book-section { margin-top: 44px; padding: 32px; }
+.book-section::before { left: 28px; right: 28px; background: linear-gradient(90deg, #ffffff18, #ffffff05 65%, transparent); }
+.book-section .panel:not(.balance-card), .type-panel, .overview-strip, .hero-card {
+  background: linear-gradient(145deg, #ffffff07, #ffffff01 72%), #10101080;
+  border-color: #ffffff1c;
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+  backdrop-filter: blur(12px) saturate(110%);
+  box-shadow: inset 0 1px 0 #ffffff08, 0 16px 40px #0003;
+}
+.hero-card { box-shadow: inset 0 1px 0 #ffffff0b, 0 28px 60px #0005; }
+.balance-card { background: radial-gradient(ellipse at 100% 0%, #ffffff0c, transparent 70%), #10101080; border-color: #ffffff24; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.color-card { background: #10101090; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 #ffffff06; }
+.semantic-row, .playground, .closing { background: linear-gradient(130deg, #ffffff06, #ffffff01), #10101066; border-color: #ffffff18; }
+.type-specimen { background: radial-gradient(ellipse at 0% 100%, #ffffff05, transparent 75%); }
+.panel-toolbar { background: #ffffff02; }
+.btn {
+  transition: background-size 1.05s cubic-bezier(.37, 0, .25, 1), color .85s ease-in-out, border-color .85s ease-in-out, box-shadow .55s ease;
+}
+.field > input, .input-wrap, textarea {
+  transition: border-color .45s ease, box-shadow .6s ease, background-color .6s ease;
+}
+.field > input:focus, .input-wrap:focus-within, .focus-sample, textarea:focus {
+  border-color: #ffffff99;
+  background-color: #ffffff05;
+  box-shadow: 0 0 0 3px #ffffff09, 0 0 32px #ffffff12;
+}
+.field.error > input:focus { border-color: var(--danger); box-shadow: 0 0 0 3px #ff7a8818, 0 0 32px #ffffff12; }
+.field.success .input-wrap:focus-within { border-color: var(--success); box-shadow: 0 0 0 3px #31d0aa18, 0 0 32px #ffffff12; }
+@media (max-width: 1000px) {
+  .overview, .book-section { padding-left: 26px; padding-right: 26px; }
+}
+@media (max-width: 760px) {
+  .overview, .book-section { border-radius: 20px; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .overview { margin-top: 24px; padding: 28px 20px 24px; }
+  .book-section { margin-top: 28px; padding: 26px 20px; }
+  .book-section .panel:not(.balance-card), .type-panel { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .state-grid { padding: 12px; gap: 10px; }
+  .state-cell { padding: 16px 4px 10px; }
+  .overview-strip { padding: 20px; gap: 20px; }
+}
+@media (max-width: 359px) {
+  .state-grid { grid-template-columns: 1fr; }
+  .state-cell .btn { width: min(100%, 220px); font-size: 12px; }
+  .hero-card { width: 218px; padding: 20px; }
+  .hero-art::before { width: 210px; left: calc(50% - 96px); }
+  .hero-card h2 { font-size: 23px; }
+  .floating-chip { right: -8px; font-size: 7px; }
+}

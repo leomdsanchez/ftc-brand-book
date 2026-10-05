@@ -487,6 +487,69 @@ footer { margin-top: 72px; padding: 28px 0 32px; border-color: #ffffff0d; font-s
   .subtitle-example { font-size: 22px; }
   .closing > div { align-items: flex-start; }
 }
+
+/* Frosted sections and a restrained white focus light. */
+body {
+  background-image: radial-gradient(ellipse at 72% 18%, #ffffff08, transparent 42%), radial-gradient(ellipse at 32% 74%, #ffffff05, transparent 44%);
+  background-attachment: fixed;
+}
+.overview, .book-section {
+  border: 1px solid #ffffff17;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff08, #ffffff02 65%), #0c0c0c70;
+  -webkit-backdrop-filter: blur(16px) saturate(110%);
+  backdrop-filter: blur(16px) saturate(110%);
+  box-shadow: inset 0 1px 0 #ffffff08, 0 24px 60px #0003;
+}
+.overview { margin-top: 36px; padding: 36px 32px 32px; }
+.book-section { margin-top: 44px; padding: 32px; }
+.book-section::before { left: 28px; right: 28px; background: linear-gradient(90deg, #ffffff18, #ffffff05 65%, transparent); }
+.book-section .panel:not(.balance-card), .type-panel, .overview-strip, .hero-card {
+  background: linear-gradient(145deg, #ffffff07, #ffffff01 72%), #10101080;
+  border-color: #ffffff1c;
+  -webkit-backdrop-filter: blur(12px) saturate(110%);
+  backdrop-filter: blur(12px) saturate(110%);
+  box-shadow: inset 0 1px 0 #ffffff08, 0 16px 40px #0003;
+}
+.hero-card { box-shadow: inset 0 1px 0 #ffffff0b, 0 28px 60px #0005; }
+.balance-card { background: radial-gradient(ellipse at 100% 0%, #ffffff0c, transparent 70%), #10101080; border-color: #ffffff24; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.color-card { background: #10101090; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 1px 0 #ffffff06; }
+.semantic-row, .playground, .closing { background: linear-gradient(130deg, #ffffff06, #ffffff01), #10101066; border-color: #ffffff18; }
+.type-specimen { background: radial-gradient(ellipse at 0% 100%, #ffffff05, transparent 75%); }
+.panel-toolbar { background: #ffffff02; }
+.btn {
+  transition: background-size 1.05s cubic-bezier(.37, 0, .25, 1), color .85s ease-in-out, border-color .85s ease-in-out, box-shadow .55s ease;
+}
+.field > input, .input-wrap, textarea {
+  transition: border-color .45s ease, box-shadow .6s ease, background-color .6s ease;
+}
+.field > input:focus, .input-wrap:focus-within, .focus-sample, textarea:focus {
+  border-color: #ffffff99;
+  background-color: #ffffff05;
+  box-shadow: 0 0 0 3px #ffffff09, 0 0 32px #ffffff12;
+}
+.field.error > input:focus { border-color: var(--danger); box-shadow: 0 0 0 3px #ff7a8818, 0 0 32px #ffffff12; }
+.field.success .input-wrap:focus-within { border-color: var(--success); box-shadow: 0 0 0 3px #31d0aa18, 0 0 32px #ffffff12; }
+@media (max-width: 1000px) {
+  .overview, .book-section { padding-left: 26px; padding-right: 26px; }
+}
+@media (max-width: 760px) {
+  .overview, .book-section { border-radius: 20px; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .overview { margin-top: 24px; padding: 28px 20px 24px; }
+  .book-section { margin-top: 28px; padding: 26px 20px; }
+  .book-section .panel:not(.balance-card), .type-panel { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .state-grid { padding: 12px; gap: 10px; }
+  .state-cell { padding: 16px 4px 10px; }
+  .overview-strip { padding: 20px; gap: 20px; }
+}
+@media (max-width: 359px) {
+  .state-grid { grid-template-columns: 1fr; }
+  .state-cell .btn { width: min(100%, 220px); font-size: 12px; }
+  .hero-card { width: 218px; padding: 20px; }
+  .hero-art::before { width: 210px; left: calc(50% - 96px); }
+  .hero-card h2 { font-size: 23px; }
+  .floating-chip { right: -8px; font-size: 7px; }
+}
 </style>
 </head>
 <body>
@@ -870,6 +933,22 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
     let width, height, left, top, clouds = [], sources = [], dirty = true;
     let frame = null, last = 0, elapsed = 0;
     const pointer = { x: 0, y: 0, strength: 0, target: 0 };
+    const textField = 'input:not([type]), input[type="text"], input[type="email"], input[type="search"], input[type="number"], input[type="tel"], input[type="url"], input[type="password"], textarea, [contenteditable="true"]';
+    let focusEffects = [];
+    function focusField(element) {
+      focusEffects.forEach(effect => { effect.target = 0; });
+      let effect = focusEffects.find(item => item.element === element);
+      if (!effect) {
+        effect = { element, host: element.closest('.input-wrap') || element,
+          strength: 0, target: 1,
+          particles: Array.from({ length: width < 760 ? 6 : 8 }, (_, index) => ({
+            phase: Math.random(), lane: index % 2, size: .65 + Math.random() * .5,
+            speed: 22 + Math.random() * 16
+          })) };
+        focusEffects.push(effect);
+      }
+      effect.target = 1;
+    }
     function resize() {
       width = innerWidth; height = innerHeight;
       const dpr = Math.min(devicePixelRatio || 1, 2);
@@ -943,6 +1022,34 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       ctx.fillStyle = gradient;
       ctx.fillRect(source.x - source.radius, source.y - source.radius, source.radius * 2, source.radius * 2);
     }
+    function fieldGlow(effect) {
+      const rect = effect.rect;
+      ctx.save();
+      ctx.translate(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      ctx.scale(rect.width / 2 + 32, rect.height / 2 + 32);
+      const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
+      gradient.addColorStop(0, `rgba(255,255,255,${effect.strength * .045})`);
+      gradient.addColorStop(.55, `rgba(255,255,255,${effect.strength * .025})`);
+      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = gradient; ctx.fillRect(-1, -1, 2, 2);
+      ctx.restore();
+    }
+    function fieldParticles(effect) {
+      const rect = effect.rect;
+      for (const particle of effect.particles) {
+        // Two slow streams follow the field edges and leave its text clear.
+        const progress = (particle.phase + elapsed * particle.speed / rect.width) % 1;
+        const x = rect.left + progress * rect.width;
+        const y = rect.top + (particle.lane ? rect.height + 4 : -4)
+          + Math.sin(elapsed * .65 + particle.phase * Math.PI * 2) * 3;
+        const alpha = effect.strength * Math.sin(progress * Math.PI) ** 2 * .55;
+        ctx.strokeStyle = `rgba(255,255,255,${alpha * .3})`;
+        ctx.lineWidth = .6;
+        ctx.beginPath(); ctx.moveTo(x - 4, y); ctx.lineTo(x, y); ctx.stroke();
+        ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+        ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
+      }
+    }
     function draw(now) {
       frame = requestAnimationFrame(draw);
       if (last && now - last < 1000 / 30) return;
@@ -952,10 +1059,22 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       pointer.strength += (pointer.target - pointer.strength) * .12;
       const lights = [...sources];
       if (pointer.strength > .01) lights.push({ ...pointer, radius: 180 });
+      focusEffects = focusEffects.filter(effect => effect.element.isConnected && (effect.target || effect.strength > .006));
+      const visibleFields = [];
+      for (const effect of focusEffects) {
+        effect.strength += (effect.target - effect.strength) * (1 - Math.exp(-delta * 6));
+        effect.rect = effect.host.getBoundingClientRect();
+        const rect = effect.rect;
+        if (!rect.width || !rect.height || rect.bottom < top || rect.top > height) continue;
+        visibleFields.push(effect);
+        lights.push({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2,
+          radius: Math.max(110, Math.min(200, rect.width * .55)), strength: effect.strength * .8 });
+      }
       ctx.clearRect(0, 0, width, height);
       ctx.save();
       for (const source of sources) glow(source);
       if (pointer.strength > .01) glow({ ...pointer, radius: 180 }, true);
+      visibleFields.forEach(fieldGlow);
       for (const cloud of clouds) {
         if (cloud.y + cloud.ry < top || cloud.y - cloud.ry > height) continue;
         for (const particle of cloud.particles) {
@@ -981,6 +1100,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
           ctx.beginPath(); ctx.arc(x, y, particle.size, 0, Math.PI * 2); ctx.fill();
         }
       }
+      visibleFields.forEach(fieldParticles);
       ctx.restore();
     }
     function sync() {
@@ -1002,9 +1122,18 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       pointer.target = event.pointerType !== 'touch' && action && !action.disabled && action.getAttribute('aria-disabled') !== 'true' && action.getAttribute('aria-busy') !== 'true' ? 1 : 0;
     }, { passive: true });
     document.documentElement.addEventListener('pointerleave', () => { pointer.target = 0; });
+    document.addEventListener('focusin', event => {
+      if (event.target.matches?.(textField)) focusField(event.target);
+    });
+    document.addEventListener('focusout', event => {
+      const effect = focusEffects.find(item => item.element === event.target);
+      if (effect) effect.target = 0;
+    });
     document.addEventListener('visibilitychange', sync);
     motion.addEventListener('change', sync);
-    resize(); sync();
+    resize();
+    if (document.activeElement?.matches?.(textField)) focusField(document.activeElement);
+    sync();
   }
   initScrollReveal();
   initAtmosphere();
