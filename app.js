@@ -310,7 +310,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       clouds = $$('main > section').map(section => ({
         section,
         particles: Array.from({ length: count }, () => ({
-          x: Math.random() * 2 - 1, y: Math.random(), size: .35 + Math.random() * .65,
+          x: Math.random() * 2 - 1, y: Math.random(), size: .45 + Math.random() * .8,
           speed: 2 + Math.random() * 4, phase: Math.random() * Math.PI * 2, opacity: 0
         }))
       }));
@@ -367,7 +367,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       // Match the squared distance falloff used to illuminate each dust mote.
       for (const distance of [0, .25, .5, .75, 1]) {
         const alpha = source.strength * (1 - distance) ** 2;
-        gradient.addColorStop(distance, `rgba(255,255,255,${alpha * (emphasis ? .05 : .04)})`);
+        gradient.addColorStop(distance, `rgba(255,255,255,${alpha * (emphasis ? .065 : .055)})`);
       }
       ctx.fillStyle = gradient;
       ctx.fillRect(source.x - source.radius, source.y - source.radius, source.radius * 2, source.radius * 2);
@@ -397,13 +397,13 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
           const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
           // No ambient visibility floor: unlit dust fades completely away.
           const light = Math.max(0, (illumination - .025) / .975);
-          const targetAlpha = Math.pow(light, .75) * .58 * Math.sqrt(edge);
+          const targetAlpha = Math.pow(light, .75) * .68 * Math.sqrt(edge);
           particle.opacity += (targetAlpha - particle.opacity) * (1 - Math.exp(-delta * 9));
           const alpha = particle.opacity;
           if (alpha < .012) continue;
           if (illumination > .3) {
             const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 2.8);
-            halo.addColorStop(0, `rgba(255,255,255,${alpha * .2})`); halo.addColorStop(1, 'rgba(255,255,255,0)');
+            halo.addColorStop(0, `rgba(255,255,255,${alpha * .26})`); halo.addColorStop(1, 'rgba(255,255,255,0)');
             ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 2.8, 0, Math.PI * 2); ctx.fill();
           }
           ctx.fillStyle = `rgba(255,255,255,${alpha})`;
