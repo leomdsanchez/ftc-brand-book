@@ -237,7 +237,6 @@ body { overflow-x: clip; }
 .workspace { overflow-x: clip; }
 
 /* Soft white light and restrained shadows keep the atmosphere understated. */
-.atmosphere { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 31; pointer-events: none; }
 .hero-art { background: radial-gradient(ellipse at 50% 60%, #ffffff0e, transparent 72%); }
 .hero-card { background: linear-gradient(150deg, #1b1b1b, #101010 65%); border-color: #ffffff24; box-shadow: 0 20px 48px #0006, 0 0 70px #ffffff06; }
 .balance-card { background: radial-gradient(circle at 95% 0%, #ffffff08, transparent 65%), var(--surface); box-shadow: 0 0 32px #ffffff03; }
@@ -245,7 +244,6 @@ body { overflow-x: clip; }
 @media (hover: hover) and (pointer: fine) {
   .btn.primary:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(:active):not(.state-pressed) { box-shadow: 0 0 18px #ffffff18, 0 0 36px #ffffff08; }
 }
-@media (prefers-reduced-motion: reduce) { .atmosphere { display: none; } }
 
 /* Editorial composition: generous rhythm, precise hierarchy, quiet surfaces. */
 :root { --page-gutter: clamp(24px, 3.8vw, 64px); }
@@ -476,10 +474,6 @@ footer { margin-top: 72px; padding: 28px 0 32px; border-color: #ffffff0d; font-s
 }
 
 /* Frosted sections and a restrained white focus light. */
-body {
-  background-image: radial-gradient(ellipse at 72% 18%, #ffffff08, transparent 42%), radial-gradient(ellipse at 32% 74%, #ffffff05, transparent 44%);
-  background-attachment: fixed;
-}
 .overview, .book-section {
   border: 1px solid #ffffff17;
   border-radius: 24px;
