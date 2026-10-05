@@ -804,6 +804,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       const height = innerHeight;
       const header = $('.topbar').getBoundingClientRect().bottom;
       const zone = Math.min(320, (height - header) * .38);
+      const exitBand = Math.min(160, (height - header) * .2);
       const content = $('#main').getBoundingClientRect();
       if (dirty) {
         items.forEach((item, index) => {
@@ -820,7 +821,7 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
         const top = item.top - window.scrollY;
         const bottom = top + item.height;
         const entering = (height - top) / zone;
-        const exitZone = Math.min(zone, Math.max(1, item.top + item.height - header));
+        const exitZone = Math.min(exitBand, Math.max(1, item.top + item.height - header));
         const leaving = (bottom - header) / exitZone;
         let amount = Math.max(0, Math.min(1, entering, leaving));
         const instant = motion.matches || item.element.contains(document.activeElement);
