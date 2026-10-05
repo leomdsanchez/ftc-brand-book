@@ -52,7 +52,7 @@ Os valores financeiros e as interações são exemplos fictícios. Adapte os han
 
 ## Movimento na rolagem
 
-Títulos, painéis e cards entram diagonalmente pelos cantos inferiores e saem pelos cantos superiores, com opacidade ligada à posição na tela. O efeito funciona nos dois sentidos da rolagem e se repete ao retornar à seção. O conteúdo fica totalmente visível na área de leitura; elementos com foco, impressão e movimento reduzido permanecem visíveis sem deslocamento.
+Títulos, painéis e cards entram diagonalmente pelos cantos inferiores e saem pelos cantos superiores, com opacidade ligada à posição na tela. Uma faixa mais ampla de entrada e saída, deslocamentos menores e amortecimento de 160 ms suavizam os passos da roda do mouse ou do trackpad. A animação termina ao estabilizar, sem manter um loop ocioso. O efeito funciona nos dois sentidos da rolagem e se repete ao retornar à seção. O conteúdo fica totalmente visível na área de leitura; elementos com foco, impressão e movimento reduzido permanecem visíveis sem deslocamento.
 
 ## Iluminação e poeira
 

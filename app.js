@@ -222,13 +222,18 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
     const groups = '.hero-grid, .overview-strip, .palette, .token-details, .type-panel, .button-extras, .controls-grid, .portfolio-grid, .feedback-grid, .rules-grid';
     const targets = $$('main > section > *').flatMap(element =>
       element.matches(groups) ? [...element.children] : [element]);
-    const items = targets.map(element => ({ element, x: 0, y: 0 }));
-    let frame = null, dirty = true;
-    function update() {
+    const items = targets.map(element => ({ element, x: 0, y: 0, opacity: 1 }));
+    let frame = null, dirty = true, initialized = false, last = 0;
+    function update(now = performance.now()) {
       frame = null;
+      const delta = Math.min(.05, Math.max(0, (now - last) / 1000));
+      last = now;
+      // Smooth wheel/trackpad steps without adding a permanent animation loop.
+      const blend = 1 - Math.exp(-delta / .16);
+      let settling = false;
       const height = innerHeight;
       const header = $('.topbar').getBoundingClientRect().bottom;
-      const zone = Math.min(240, (height - header) * .28);
+      const zone = Math.min(320, (height - header) * .38);
       const content = $('#main').getBoundingClientRect();
       if (dirty) {
         items.forEach((item, index) => {
@@ -248,16 +253,27 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
         const exitZone = Math.min(zone, Math.max(1, item.top + item.height - header));
         const leaving = (bottom - header) / exitZone;
         let amount = Math.max(0, Math.min(1, entering, leaving));
-        if (motion.matches || item.element.contains(document.activeElement)) amount = 1;
+        const instant = motion.matches || item.element.contains(document.activeElement);
+        if (instant) amount = 1;
         const eased = amount * amount * (3 - 2 * amount);
         const distance = 1 - eased;
-        item.x = item.side * distance * Math.min(320, innerWidth * .24);
-        item.y = (entering < leaving ? 1 : -1) * distance * 100;
-        item.element.style.setProperty('--reveal-opacity', eased.toFixed(3));
+        const targetX = item.side * distance * Math.min(210, innerWidth * .18);
+        const targetY = (entering < leaving ? 1 : -1) * distance * 72;
+        const factor = instant || !initialized ? 1 : blend;
+        item.opacity += (eased - item.opacity) * factor;
+        item.x += (targetX - item.x) * factor;
+        item.y += (targetY - item.y) * factor;
+        if (Math.abs(eased - item.opacity) < .002) item.opacity = eased;
+        if (Math.abs(targetX - item.x) < .1) item.x = targetX;
+        if (Math.abs(targetY - item.y) < .1) item.y = targetY;
+        if (item.opacity !== eased || item.x !== targetX || item.y !== targetY) settling = true;
+        item.element.style.setProperty('--reveal-opacity', item.opacity.toFixed(3));
         item.element.style.setProperty('--reveal-x', `${item.x.toFixed(2)}px`);
         item.element.style.setProperty('--reveal-y', `${item.y.toFixed(2)}px`);
         item.element.classList.add('corner-reveal');
       });
+      initialized = true;
+      if (settling) schedule();
     }
     function schedule() { if (frame === null) frame = requestAnimationFrame(update); }
     window.addEventListener('scroll', schedule, { passive: true });
