@@ -52,4 +52,4 @@ Os valores financeiros e as interações são exemplos fictícios. Adapte os han
 
 ## Iluminação e poeira
 
-A abertura, a ação de compra e o saldo da carteira concentram a luz azul da marca. Partículas pequenas de poeira aumentam o brilho ao atravessar essas áreas; perto de uma ação principal sob o ponteiro, a luz fica branca. A camada decorativa não recebe cliques, fica fora da árvore acessível, pausa em abas ocultas e é desativada com movimento reduzido. A animação usa até 30 quadros por segundo e reduz a quantidade de partículas em telas pequenas.
+A abertura, a ação de compra e o saldo da carteira concentram a luz azul da marca. A visibilidade da poeira depende da intensidade local da luz: no escuro, a opacidade chega a zero; nas áreas iluminadas, mais partículas aparecem e ficam mais brilhantes, com transição suave. Perto de uma ação principal sob o ponteiro, a luz fica branca. A camada decorativa não recebe cliques, fica fora da árvore acessível, pausa em abas ocultas e é desativada com movimento reduzido. A animação usa até 30 quadros por segundo, com até 220 partículas no desktop e 70 em telas pequenas.

@@ -568,10 +568,10 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       left = width > 760 ? $('#sidebar').getBoundingClientRect().right : 0;
       top = $('.topbar').getBoundingClientRect().bottom;
-      const count = Math.min(width < 760 ? 32 : 80, Math.round(width * height / 16000));
+      const count = Math.min(width < 760 ? 70 : 220, Math.round(width * height / 5000));
       particles = Array.from({ length: count }, () => ({
         x: Math.random(), y: Math.random(), size: .45 + Math.random() * .95,
-        speed: 3 + Math.random() * 6, phase: Math.random() * Math.PI * 2
+        speed: 3 + Math.random() * 6, phase: Math.random() * Math.PI * 2, opacity: 0
       }));
       dirty = true;
     }
@@ -610,10 +610,15 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
         const x = left + particle.x * (width - left) + Math.sin(elapsed * .2 + particle.phase) * 12;
         const y = top + ((particle.y * (height - top) - elapsed * particle.speed) % (height - top) + height - top) % (height - top);
         const illumination = Math.min(1, lights.reduce((sum, light) => sum + Math.max(0, 1 - Math.hypot(x - light.x, y - light.y) / light.radius) ** 2 * light.strength, 0));
-        const alpha = .035 + illumination * .5;
+        // No ambient visibility floor: unlit dust fades completely away.
+        const light = Math.max(0, (illumination - .025) / .975);
+        const targetAlpha = Math.pow(light, .75) * .75;
+        particle.opacity += (targetAlpha - particle.opacity) * (1 - Math.exp(-delta * 9));
+        const alpha = particle.opacity;
+        if (alpha < .012) continue;
         if (illumination > .12) {
           const halo = ctx.createRadialGradient(x, y, 0, x, y, particle.size * 4);
-          halo.addColorStop(0, `rgba(160,199,255,${illumination * .22})`); halo.addColorStop(1, 'rgba(160,199,255,0)');
+          halo.addColorStop(0, `rgba(160,199,255,${alpha * .4})`); halo.addColorStop(1, 'rgba(160,199,255,0)');
           ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(x, y, particle.size * 4, 0, Math.PI * 2); ctx.fill();
         }
         ctx.fillStyle = `rgba(225,237,255,${alpha})`;
