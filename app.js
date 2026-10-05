@@ -217,6 +217,60 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
   window.addEventListener('scroll',()=>{if(scrollFrame)return;scrollFrame=requestAnimationFrame(()=>{updateActiveSection();scrollFrame=null;});},{passive:true});
   window.addEventListener('resize',updateActiveSection);updateActiveSection();
 
+  function initScrollReveal() {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const groups = '.hero-grid, .overview-strip, .palette, .token-details, .type-panel, .button-extras, .controls-grid, .portfolio-grid, .feedback-grid, .rules-grid';
+    const targets = $$('main > section > *').flatMap(element =>
+      element.matches(groups) ? [...element.children] : [element]);
+    const items = targets.map(element => ({ element, x: 0, y: 0 }));
+    let frame = null, dirty = true;
+    function update() {
+      frame = null;
+      const height = innerHeight;
+      const header = $('.topbar').getBoundingClientRect().bottom;
+      const zone = Math.min(240, (height - header) * .28);
+      const content = $('#main').getBoundingClientRect();
+      if (dirty) {
+        items.forEach((item, index) => {
+          const rect = item.element.getBoundingClientRect();
+          item.top = rect.top - item.y + window.scrollY;
+          item.height = rect.height;
+          const center = rect.left - item.x + rect.width / 2;
+          const middle = content.left + content.width / 2;
+          item.side = Math.abs(center - middle) < 40 ? (index % 2 ? 1 : -1) : (center < middle ? -1 : 1);
+        });
+        dirty = false;
+      }
+      items.forEach(item => {
+        const top = item.top - window.scrollY;
+        const bottom = top + item.height;
+        const entering = (height - top) / zone;
+        const leaving = (bottom - header) / zone;
+        let amount = Math.max(0, Math.min(1, entering, leaving));
+        if (motion.matches || item.element.contains(document.activeElement)) amount = 1;
+        const eased = amount * amount * (3 - 2 * amount);
+        const distance = 1 - eased;
+        item.x = item.side * distance * Math.min(320, innerWidth * .24);
+        item.y = (entering < leaving ? 1 : -1) * distance * 100;
+        item.element.style.setProperty('--reveal-opacity', eased.toFixed(3));
+        item.element.style.setProperty('--reveal-x', `${item.x.toFixed(2)}px`);
+        item.element.style.setProperty('--reveal-y', `${item.y.toFixed(2)}px`);
+        item.element.classList.add('corner-reveal');
+      });
+    }
+    function schedule() { if (frame === null) frame = requestAnimationFrame(update); }
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', () => { dirty = true; schedule(); });
+    document.addEventListener('focusin', schedule);
+    document.addEventListener('focusout', schedule);
+    motion.addEventListener('change', schedule);
+    if ('ResizeObserver' in window) {
+      const observer = new ResizeObserver(() => { dirty = true; schedule(); });
+      $$('main > section').forEach(section => observer.observe(section));
+    }
+    update();
+  }
+
   function initAtmosphere() {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const canvas = document.createElement('canvas');
@@ -341,5 +395,6 @@ ${tokenNames.map(name=>`  --${name}: ${computedTokens.getPropertyValue(`--${name
     motion.addEventListener('change', sync);
     resize(); sync();
   }
+  initScrollReveal();
   initAtmosphere();
 })();

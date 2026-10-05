@@ -50,6 +50,10 @@ O botão **Exportar tokens** lê os mesmos valores CSS que a página usa. Os est
 
 Os valores financeiros e as interações são exemplos fictícios. Adapte os handlers e estados de retorno às regras do seu sistema.
 
+## Movimento na rolagem
+
+Títulos, painéis e cards entram diagonalmente pelos cantos inferiores e saem pelos cantos superiores, com opacidade ligada à posição na tela. O efeito funciona nos dois sentidos da rolagem e se repete ao retornar à seção. O conteúdo fica totalmente visível na área de leitura; elementos com foco, impressão e movimento reduzido permanecem visíveis sem deslocamento.
+
 ## Iluminação e poeira
 
 Pontos de luz azul cobrem toda a página, a navegação e o cabeçalho. Os focos da página permanecem ancorados ao conteúdo durante a rolagem e se adaptam à largura da tela. A luz é mais forte no centro de cada foco e diminui com o quadrado da distância normalizada até desaparecer na borda; a poeira usa a mesma queda de intensidade. A abertura, a ação de compra e o saldo da carteira recebem focos mais intensos. No escuro, a opacidade da poeira chega a zero; nas áreas iluminadas, mais partículas aparecem e ficam mais brilhantes, com transição suave. Perto de uma ação principal sob o ponteiro, a luz fica branca. A camada decorativa não recebe cliques, fica fora da árvore acessível, pausa em abas ocultas e é desativada com movimento reduzido. A animação usa até 30 quadros por segundo, com até 220 partículas no desktop e 70 em telas pequenas.

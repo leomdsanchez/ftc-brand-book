@@ -233,6 +233,14 @@ main:focus, main > section:focus { outline: none; }
   .spacing-list { flex-wrap: wrap; height: auto; gap: 15px; }
 }
 
+/* Scroll-linked diagonal entrances and exits preserve each element's transform. */
+body { overflow-x: clip; }
+.corner-reveal { opacity: var(--reveal-opacity, 1); translate: var(--reveal-x, 0px) var(--reveal-y, 0px); }
+@media (prefers-reduced-motion: reduce) {
+  .corner-reveal { opacity: 1; translate: none; }
+}
+@media print { .corner-reveal { opacity: 1; translate: none; } }
+
 /* Soft lights cover the theme, with stronger accents on its main actions. */
 .atmosphere { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 31; pointer-events: none; }
 .hero-art { background: radial-gradient(ellipse at 50% 60%, #0052fc25, transparent 72%); }
