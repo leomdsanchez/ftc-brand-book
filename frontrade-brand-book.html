@@ -67,9 +67,9 @@
 .state-cell .label { min-height: 34px; text-align: center; display: grid; place-items: center; letter-spacing: .6px; }
 /* Original-site hover: a skewed white band expands from the center. */
 .btn { font-size: 14px; position: relative; isolation: isolate; overflow: hidden; }
-.btn::after { content: ''; position: absolute; inset: 0 -20%; z-index: -1; background: #fff; pointer-events: none; transform-origin: center; transform: skewX(-45deg) scaleX(0); transition: transform .4s ease; }
+.btn::after { content: ''; position: absolute; top: 0; left: 50%; width: calc(100% + 64px); height: 100%; z-index: -1; background: #fff; pointer-events: none; transform-origin: center; transform: translateX(-50%) skewX(-45deg) scaleX(0); transition: transform .4s ease; }
 .btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) { color: #000; border-color: #fff; }
-.btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: skewX(-45deg) scaleX(1); }
+.btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: translateX(-50%) skewX(-45deg) scaleX(1); }
 .btn.small, .sample-row .btn, .button-extras .btn { font-size: 13px; }
 .btn.large { font-size: 15px; }
 .btn.secondary { border-color: var(--border-control); }
@@ -79,7 +79,7 @@
     color: #000;
     border-color: #fff;
   }
-  .btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: skewX(-45deg) scaleX(1); }
+  .btn:hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: translateX(-50%) skewX(-45deg) scaleX(1); }
 }
 /* Pressed, disabled and busy states take precedence over hover. */
 .btn.primary:active, .btn.primary.state-pressed { background: var(--brand-pressed); color: #fff; }
