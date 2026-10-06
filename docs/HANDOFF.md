@@ -1,6 +1,10 @@
 # Frontrade Cryptos — handoff dos componentes
 
-Versão 0.2. Use `styles.css` e preserve os arquivos em `assets/`.
+Versão 0.2. Use `assets/css/styles.css` e preserve os arquivos em `assets/`.
+
+O código reutilizável está em `index.html` e `assets/`; os entregáveis em `dist/` são gerados. Consulte [DEVELOPMENT.md](DEVELOPMENT.md) para arquitetura, comandos e publicação.
+
+Ícones com `<use href="#i-…">` dependem dos símbolos SVG definidos no início de `index.html`. Ao copiar um componente para outra página, inclua os símbolos correspondentes ou substitua os ícones. O JavaScript depende dos IDs desta demonstração; adapte os handlers em vez de importar o script inteiro em uma página parcial.
 
 ## Botões
 
@@ -32,7 +36,7 @@ As classes `state-hover`, `state-pressed` e `state-focus` existem para as amostr
 </button>
 ```
 
-Em uma operação real, bloqueie disparos repetidos, defina os atributos antes de iniciar a requisição e remova-os em sucesso ou erro. Preserve a largura e o foco do controle durante a troca de rótulo. A demonstração em `app.js` implementa esse comportamento localmente.
+Em uma operação real, bloqueie disparos repetidos, defina os atributos antes de iniciar a requisição e remova-os em sucesso ou erro. Preserve a largura e o foco do controle durante a troca de rótulo. A demonstração em `assets/js/app.js` implementa esse comportamento localmente.
 
 ## Campos
 
@@ -44,9 +48,9 @@ Use `label` ligado ao `id` do input, `aria-describedby` para orientação e erro
 
 O botão **Exportar tokens** lê os mesmos valores CSS que a página usa. Os estilos da marca e os estados propostos compartilham uma única definição em `:root`.
 
-- `index.html`, `styles.css`, `app.js` e `assets/`: arquivos separados para implementação.
-- `frontrade-brand-book.html`: versão com todos os recursos incorporados.
-- `build.py`: gera o HTML único e o ZIP a partir dos arquivos separados; execute `python build.py` depois de alterá-los.
+- `index.html`, `assets/css/styles.css`, `assets/js/app.js` e `assets/`: arquivos separados para implementação.
+- `dist/frontrade-brand-book.html`: versão com todos os recursos incorporados.
+- `scripts/build.py`: gera o HTML único e o ZIP a partir dos arquivos separados; execute `python3 scripts/build.py` depois de alterá-los.
 
 Os valores financeiros e as interações são exemplos fictícios. Adapte os handlers e estados de retorno às regras do seu sistema.
 
@@ -64,4 +68,4 @@ A abertura usa uma hierarquia tipográfica mais forte, um card com planos sobrep
 
 ## Glass e foco nos campos
 
-Somente o painel central da seção `#glass` demonstra glass com blur de 20 px, fundo preto com 20% de opacidade, cantos de 12 px e sem borda, conforme os estilos observados no site original. O painel permanece estático, inspirado na seção de segurança da marca. O fundo usa a ilustração SVG estática `assets/glass-crystals.svg`, sem animação ou overlay de tela inteira. A abertura não usa desfoque. As outras seções, os cards internos, o cabeçalho, a navegação e os modais não usam desfoque de fundo. Nenhum blur é sobreposto a outro. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 240 ms, com ease-in-out na entrada e na saída do hover; o movimento reduzido continua desativando animações.
+Somente o painel central da seção `#glass` demonstra glass com blur de 20 px, fundo preto com 20% de opacidade, cantos de 12 px e sem borda, conforme os estilos observados no site original. O painel permanece estático, inspirado na seção de segurança da marca. O fundo usa a ilustração SVG estática `assets/images/glass-crystals.svg`, sem animação ou overlay de tela inteira. A abertura não usa desfoque. As outras seções, os cards internos, o cabeçalho, a navegação e os modais não usam desfoque de fundo. Nenhum blur é sobreposto a outro. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 240 ms, com ease-in-out na entrada e na saída do hover; o movimento reduzido continua desativando animações.

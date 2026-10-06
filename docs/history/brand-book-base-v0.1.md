@@ -2,6 +2,8 @@
 
 Versão 0.1 · 4 de outubro de 2026
 
+Levantamento histórico. Propostas e próximos passos abaixo refletem a versão inicial. O contrato atual está em `../HANDOFF.md`.
+
 Referência: https://frontradecryptos.com/
 
 Este documento inicia o brand book e a biblioteca de interface a partir da página pública existente. Os valores identificados no site são referências observadas; as regras de padronização abaixo são propostas para o sistema.

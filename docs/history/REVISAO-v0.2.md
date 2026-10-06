@@ -1,4 +1,6 @@
-# Revisão da biblioteca — v0.2
+# Revisão histórica da biblioteca — v0.2
+
+Registro da revisão anterior à reorganização de 6 de outubro de 2026 (UTC). Os testes abaixo pertencem àquela revisão; não são resultados de cada novo commit. Consulte `../DEVELOPMENT.md` para a verificação atual.
 
 ## Ajustes realizados
 

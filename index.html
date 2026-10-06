@@ -1,108 +1,731 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090909">
-  <link rel="icon" type="image/webp" href="assets/logo.webp">
-  <title>Frontrade Cryptos — Brand book & UI kit</title>
-  <link rel="stylesheet" href="styles.css?v=buttons-240ms-21"><script src="app.js?v=buttons-240ms-21" defer></script>
-</head>
-<body>
-<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
-<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
-<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol>
-<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
-<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
-<symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
-<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
-<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
-<symbol id="i-code" viewBox="0 0 24 24"><path d="m7 7-5 5 5 5m10-10 5 5-5 5M14 4l-4 16"/></symbol>
-<symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M17 11h4v5h-4a2.5 2.5 0 0 1 0-5ZM3 8V5a2 2 0 0 1 2-2h13"/></symbol>
-<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
-<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/></symbol>
-<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
-<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
-</defs></svg>
-<a class="skip" href="#main">Ir para o conteúdo</a>
-<aside class="sidebar" id="sidebar">
-  <a href="#overview" class="brand"><img src="assets/logo.webp" alt="FronTrade Cryptos"><span>DESIGN SYSTEM <span class="version">v0.2</span></span></a>
-  <div class="nav-label">EXPLORAR A BIBLIOTECA</div>
-  <nav aria-label="Seções do brand book">
-    <a class="nav-link active" href="#overview"><svg class="icon"><use href="#i-grid"/></svg>Visão geral<span class="nav-dot"></span></a>
-    <div class="nav-group">Fundamentos</div>
-    <a class="nav-link" href="#colors"><span class="nav-number">01</span>Cores & tokens</a>
-    <a class="nav-link" href="#type"><span class="nav-number">02</span>Tipografia</a>
-    <div class="nav-group">Componentes</div>
-    <a class="nav-link" href="#buttons"><span class="nav-number">03</span>Botões</a>
-    <a class="nav-link" href="#forms"><span class="nav-number">04</span>Campos & controles</a>
-    <a class="nav-link" href="#data"><span class="nav-number">05</span>Cards & dados</a>
-    <a class="nav-link" href="#feedback"><span class="nav-number">06</span>Feedback & overlays</a>
-    <a class="nav-link" href="#rules"><span class="nav-number">07</span>Regras de uso</a>
-    <a class="nav-link" href="#glass"><span class="nav-number">08</span>Glass & superfícies</a>
-  </nav>
-  <div class="sidebar-bottom"><span class="live-dot"></span> Biblioteca interativa<p>Uma identidade. Cada detalhe.</p><a href="https://frontradecryptos.com/" target="_blank" rel="noopener noreferrer">Visitar site da marca <span>↗</span></a></div>
-</aside>
-<div class="workspace">
-  <header class="topbar"><div class="breadcrumb"><button class="icon-btn mobile-menu" id="menu-toggle" aria-label="Abrir navegação" aria-expanded="false" aria-controls="sidebar"><svg class="icon"><use href="#i-menu"/></svg></button><span>Frontrade Cryptos</span><span class="slash">/</span><strong>Brand book & UI kit</strong></div><button class="btn secondary small" id="download-tokens"><svg class="icon"><use href="#i-download"/></svg>Exportar tokens</button></header>
-  <main id="main" tabindex="-1">
-    <section id="overview" class="overview">
-      <div class="eyebrow"><span class="live-dot"></span> A BASE PARA CONSTRUIR O PRÓXIMO</div>
-      <div class="hero-grid"><div><h1>Identidade que conecta.<br><span>Interface que evolui.</span></h1><p class="hero-description">O universo visual da Frontrade Cryptos, organizado em fundamentos e componentes prontos para explorar, testar e replicar.</p><div class="hero-actions"><a href="#buttons" class="btn primary">Explorar componentes <svg class="icon"><use href="#i-arrow"/></svg></a><button class="btn ghost" id="open-code"><svg class="icon"><use href="#i-code"/></svg>Ver código base</button></div><div class="hero-meta"><span>BASEADO NO SITE OFICIAL</span><span class="divider">/</span><span>HTML · CSS · JAVASCRIPT</span></div></div>
-      <div class="hero-art" role="img" aria-label="Exemplo de card de carteira"><div class="art-grid"></div><span class="art-caption">DA MARCA À EXPERIÊNCIA</span><div class="floating-chip"><span class="live-dot"></span> Sistema em evolução</div><div class="hero-card"><div class="card-top"><span class="wallet-icon"><svg class="icon"><use href="#i-wallet"/></svg></span><span class="badge neutral">DEMONSTRAÇÃO</span></div><span class="muted">Seu próximo movimento</span><h2>Começa com<br>uma boa base.</h2><div class="mini-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><div class="card-bottom"><span>Frontrade Cryptos</span><span class="circle-arrow">↗</span></div></div><span class="art-index">FT / 001</span></div></div>
-      <div class="overview-strip"><div><strong>08</strong><span>Seções da biblioteca</span></div><div><strong>06</strong><span>Estados de botão</span></div><div><strong>100%</strong><span>Explorável no navegador</span></div><div><svg class="icon"><use href="#i-code"/></svg><span>Estilos prontos para copiar</span></div></div>
-    </section>
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#090909" />
+    <link rel="icon" type="image/webp" href="assets/images/logo.webp" />
+    <title>Frontrade Cryptos — Brand book & UI kit</title>
+    <link rel="stylesheet" href="assets/css/styles.css?v=handoff-22" /><script
+      src="assets/js/app.js?v=handoff-22"
+      defer
+    ></script>
+  </head>
+  <body>
+    <svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" /></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+          <rect x="8" y="8" width="12" height="12" rx="3" />
+          <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3" />
+        </symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6" /></symbol>
+        <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6" /></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24">
+          <path d="m7 7-5 5 5 5m10-10 5 5-5 5M14 4l-4 16" />
+        </symbol>
+        <symbol id="i-wallet" viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="15" rx="3" />
+          <path d="M17 11h4v5h-4a2.5 2.5 0 0 1 0-5ZM3 8V5a2 2 0 0 1 2-2h13" />
+        </symbol>
+        <symbol id="i-info" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 11v6m0-10v1" />
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+          <path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4" />
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24">
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 5 5" />
+        </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" /></symbol>
+      </defs>
+    </svg>
+    <a class="skip" href="#main">Ir para o conteúdo</a>
+    <aside class="sidebar" id="sidebar">
+      <a href="#overview" class="brand"
+        ><img src="assets/images/logo.webp" alt="FronTrade Cryptos" /><span
+          >DESIGN SYSTEM <span class="version">v0.2</span></span
+        ></a
+      >
+      <div class="nav-label">EXPLORAR A BIBLIOTECA</div>
+      <nav aria-label="Seções do brand book">
+        <a class="nav-link active" href="#overview"
+          ><svg class="icon"><use href="#i-grid" /></svg>Visão geral<span class="nav-dot"></span
+        ></a>
+        <div class="nav-group">Fundamentos</div>
+        <a class="nav-link" href="#colors"><span class="nav-number">01</span>Cores & tokens</a>
+        <a class="nav-link" href="#type"><span class="nav-number">02</span>Tipografia</a>
+        <div class="nav-group">Componentes</div>
+        <a class="nav-link" href="#buttons"><span class="nav-number">03</span>Botões</a>
+        <a class="nav-link" href="#forms"><span class="nav-number">04</span>Campos & controles</a>
+        <a class="nav-link" href="#data"><span class="nav-number">05</span>Cards & dados</a>
+        <a class="nav-link" href="#feedback"
+          ><span class="nav-number">06</span>Feedback & overlays</a
+        >
+        <a class="nav-link" href="#rules"><span class="nav-number">07</span>Regras de uso</a>
+        <a class="nav-link" href="#glass"><span class="nav-number">08</span>Glass & superfícies</a>
+      </nav>
+      <div class="sidebar-bottom"
+        ><span class="live-dot"></span> Biblioteca interativa<p>Uma identidade. Cada detalhe.</p
+        ><a href="https://frontradecryptos.com/" target="_blank" rel="noopener noreferrer"
+          >Visitar site da marca <span>↗</span></a
+        ></div
+      >
+    </aside>
+    <div class="workspace">
+      <header class="topbar"
+        ><div class="breadcrumb"
+          ><button
+            class="icon-btn mobile-menu"
+            id="menu-toggle"
+            aria-label="Abrir navegação"
+            aria-expanded="false"
+            aria-controls="sidebar"
+            ><svg class="icon"><use href="#i-menu" /></svg></button
+          ><span>Frontrade Cryptos</span><span class="slash">/</span
+          ><strong>Brand book & UI kit</strong></div
+        ><button class="btn secondary small" id="download-tokens"
+          ><svg class="icon"><use href="#i-download" /></svg>Exportar tokens</button
+        ></header
+      >
+      <main id="main" tabindex="-1">
+        <section id="overview" class="overview">
+          <div class="eyebrow"><span class="live-dot"></span> A BASE PARA CONSTRUIR O PRÓXIMO</div>
+          <div class="hero-grid"
+            ><div
+              ><h1>Identidade que conecta.<br /><span>Interface que evolui.</span></h1
+              ><p class="hero-description"
+                >O universo visual da Frontrade Cryptos, organizado em fundamentos e componentes
+                prontos para explorar, testar e replicar.</p
+              ><div class="hero-actions"
+                ><a href="#buttons" class="btn primary"
+                  >Explorar componentes <svg class="icon"><use href="#i-arrow" /></svg></a
+                ><button class="btn ghost" id="open-code"
+                  ><svg class="icon"><use href="#i-code" /></svg>Ver código base</button
+                ></div
+              ><div class="hero-meta"
+                ><span>BASEADO NO SITE OFICIAL</span><span class="divider">/</span
+                ><span>HTML · CSS · JAVASCRIPT</span></div
+              ></div
+            >
+            <div class="hero-art" role="img" aria-label="Exemplo de card de carteira"
+              ><div class="art-grid"></div><span class="art-caption">DA MARCA À EXPERIÊNCIA</span
+              ><div class="floating-chip"><span class="live-dot"></span> Sistema em evolução</div
+              ><div class="hero-card"
+                ><div class="card-top"
+                  ><span class="wallet-icon"
+                    ><svg class="icon"><use href="#i-wallet" /></svg></span
+                  ><span class="badge neutral">DEMONSTRAÇÃO</span></div
+                ><span class="muted">Seu próximo movimento</span
+                ><h2>Começa com<br />uma boa base.</h2
+                ><div class="mini-chart" aria-hidden="true"
+                  ><span></span><span></span><span></span><span></span><span></span><span></span
+                  ><span></span><span></span><span></span><span></span><span></span
+                  ><span></span></div
+                ><div class="card-bottom"
+                  ><span>Frontrade Cryptos</span><span class="circle-arrow">↗</span></div
+                ></div
+              ><span class="art-index">FT / 001</span></div
+            ></div
+          >
+          <div class="overview-strip"
+            ><div><strong>08</strong><span>Seções da biblioteca</span></div
+            ><div><strong>06</strong><span>Estados de botão</span></div
+            ><div><strong>100%</strong><span>Explorável no navegador</span></div
+            ><div
+              ><svg class="icon"><use href="#i-code" /></svg
+              ><span>Estilos prontos para copiar</span></div
+            ></div
+          >
+        </section>
 
-    <section id="colors" class="book-section"><div class="section-head"><div><div class="section-kicker">01 / FUNDAMENTOS</div><h2>Cores que dão direção<span>.</span></h2><p>Uma base escura. Um azul reconhecível. Cada cor com um propósito.</p></div><span class="source-badge">Extraído da marca</span></div>
-      <div class="palette" id="palette"></div>
-      <div class="semantic-row"><span class="label">CORES FUNCIONAIS <small>Proposta para o sistema</small></span><button class="semantic-color" data-copy="#31D0AA"><span style="--swatch:#31D0AA"></span>Sucesso <code>#31D0AA</code></button><button class="semantic-color" data-copy="#FFBE55"><span style="--swatch:#FFBE55"></span>Alerta <code>#FFBE55</code></button><button class="semantic-color" data-copy="#FF7A88"><span style="--swatch:#FF7A88"></span>Erro <code>#FF7A88</code></button></div>
-      <div class="token-details"><div><span class="label">ESPAÇAMENTO · PROPOSTA</span><div class="spacing-list" id="spacing-list"></div></div><div><span class="label">CANTOS · PADRONIZAÇÃO</span><div class="radius-list"><div><i style="border-radius:10px"></i><span>10 px<small>Controles</small></span></div><div><i style="border-radius:16px"></i><span>16 px<small>Cards</small></span></div><div><i style="border-radius:20px"></i><span>20 px<small>Painéis</small></span></div></div></div></div>
-    </section>
+        <section id="colors" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">01 / FUNDAMENTOS</div
+              ><h2>Cores que dão direção<span>.</span></h2
+              ><p>Uma base escura. Um azul reconhecível. Cada cor com um propósito.</p></div
+            ><span class="source-badge">Extraído da marca</span></div
+          >
+          <div class="palette" id="palette"></div>
+          <div class="semantic-row"
+            ><span class="label">CORES FUNCIONAIS <small>Proposta para o sistema</small></span
+            ><button class="semantic-color" data-copy="#31D0AA"
+              ><span style="--swatch: #31d0aa"></span>Sucesso <code>#31D0AA</code></button
+            ><button class="semantic-color" data-copy="#FFBE55"
+              ><span style="--swatch: #ffbe55"></span>Alerta <code>#FFBE55</code></button
+            ><button class="semantic-color" data-copy="#FF7A88"
+              ><span style="--swatch: #ff7a88"></span>Erro <code>#FF7A88</code></button
+            ></div
+          >
+          <div class="token-details"
+            ><div
+              ><span class="label">ESPAÇAMENTO · PROPOSTA</span
+              ><div class="spacing-list" id="spacing-list"></div></div
+            ><div
+              ><span class="label">CANTOS · PADRONIZAÇÃO</span
+              ><div class="radius-list"
+                ><div
+                  ><i style="border-radius: 10px"></i
+                  ><span>10 px<small>Controles</small></span></div
+                ><div
+                  ><i style="border-radius: 16px"></i><span>16 px<small>Cards</small></span></div
+                ><div
+                  ><i style="border-radius: 20px"></i><span>20 px<small>Painéis</small></span></div
+                ></div
+              ></div
+            ></div
+          >
+        </section>
 
-    <section id="type" class="book-section"><div class="section-head"><div><div class="section-kicker">02 / FUNDAMENTOS</div><h2>Clareza em cada palavra<span>.</span></h2><p>Satoshi. Geométrica, direta e com personalidade.</p></div><span class="source-badge">Fonte do site</span></div><div class="type-panel"><div class="type-specimen"><span class="label">FAMÍLIA PRINCIPAL</span><div class="big-aa">Aa<span>↗</span></div><h3>Satoshi</h3><p>Regular 400 · Medium 500 · Bold 700</p><div class="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>0123456789 & @ % + →</div></div><div class="type-scale"><div><span class="label">DISPLAY / 56 · 700</span><p class="display-example">O futuro é agora.</p></div><div><span class="label">TÍTULO / 32 · 700</span><p class="title-example">Seu universo cripto.</p></div><div><span class="label">SUBTÍTULO / 24 · 500</span><p class="subtitle-example">Cada detalhe faz diferença.</p></div><div><span class="label">CORPO / 16 · 400</span><p>Uma experiência clara para cada movimento.</p></div><div><span class="label">AUXILIAR / 14 · 400</span><p class="muted caption-example">Última atualização há poucos segundos.</p></div></div></div><p class="section-note">Escala proposta para o sistema. O hero do site original usa 70 px no desktop e 40 px no mobile.</p></section>
+        <section id="type" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">02 / FUNDAMENTOS</div
+              ><h2>Clareza em cada palavra<span>.</span></h2
+              ><p>Satoshi. Geométrica, direta e com personalidade.</p></div
+            ><span class="source-badge">Fonte do site</span></div
+          ><div class="type-panel"
+            ><div class="type-specimen"
+              ><span class="label">FAMÍLIA PRINCIPAL</span
+              ><div class="big-aa">Aa<span>↗</span></div
+              ><h3>Satoshi</h3><p>Regular 400 · Medium 500 · Bold 700</p
+              ><div class="alphabet"
+                >ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />abcdefghijklmnopqrstuvwxyz<br />0123456789 & @ % +
+                →</div
+              ></div
+            ><div class="type-scale"
+              ><div
+                ><span class="label">DISPLAY / 56 · 700</span
+                ><p class="display-example">O futuro é agora.</p></div
+              ><div
+                ><span class="label">TÍTULO / 32 · 700</span
+                ><p class="title-example">Seu universo cripto.</p></div
+              ><div
+                ><span class="label">SUBTÍTULO / 24 · 500</span
+                ><p class="subtitle-example">Cada detalhe faz diferença.</p></div
+              ><div
+                ><span class="label">CORPO / 16 · 400</span
+                ><p>Uma experiência clara para cada movimento.</p></div
+              ><div
+                ><span class="label">AUXILIAR / 14 · 400</span
+                ><p class="muted caption-example">Última atualização há poucos segundos.</p></div
+              ></div
+            ></div
+          ><p class="section-note"
+            >Escala proposta para o sistema. O hero do site original usa 70 px no desktop e 40 px no
+            mobile.</p
+          ></section
+        >
 
-    <section id="buttons" class="book-section"><div class="section-head"><div><div class="section-kicker">03 / COMPONENTES</div><h2>Ações com intenção<span>.</span></h2><p>Explore as variantes e compare cada estado de interação.</p></div><button class="btn ghost small" data-snippet="buttons"><svg class="icon"><use href="#i-code"/></svg>Copiar estrutura</button></div>
-      <div class="panel"><div class="panel-toolbar"><div class="tabs" role="tablist" aria-label="Variantes de botão" id="button-tabs"><button role="tab" aria-selected="true" aria-controls="button-preview" id="tab-primary" data-variant="primary" tabindex="0">Primário</button><button role="tab" aria-selected="false" aria-controls="button-preview" id="tab-secondary" data-variant="secondary" tabindex="-1">Secundário</button><button role="tab" aria-selected="false" aria-controls="button-preview" id="tab-ghost" data-variant="ghost" tabindex="-1">Discreto</button></div><span class="label toolbar-note">PASSE O MOUSE · USE TAB · CLIQUE</span></div><div id="button-preview" role="tabpanel" aria-labelledby="tab-primary"><div class="state-grid" id="button-states"></div><div class="playground"><div><span class="label">EXPERIMENTE DE VERDADE</span><p>Clique para simular uma ação e seu carregamento.</p></div><div class="playground-actions"><button class="btn primary" id="live-button"><svg class="icon"><use href="#i-plus"/></svg>Comprar cripto</button><div class="live-controls"><label class="check-label"><input type="checkbox" id="disable-live">Desabilitar</label><span id="live-button-state" role="status" aria-live="polite">Estado: Padrão</span></div></div></div></div></div>
-      <div class="button-extras"><div class="panel inset"><span class="label">TAMANHOS</span><div class="sample-row"><button class="btn primary small" data-demo-action>Pequeno</button><button class="btn primary" data-demo-action>Médio</button><button class="btn primary large" data-demo-action>Grande</button></div><p class="section-note">44 / 48 / 56 px · alvos confortáveis para toque.</p></div><div class="panel inset"><span class="label">COMPOSIÇÃO</span><div class="sample-row"><button class="btn secondary" data-demo-action><svg class="icon"><use href="#i-plus"/></svg>Com ícone</button><button class="btn secondary" data-demo-action>Continuar<svg class="icon"><use href="#i-arrow"/></svg></button><button class="btn secondary icon-only" aria-label="Adicionar ativo, demonstração" data-demo-action><svg class="icon"><use href="#i-plus"/></svg></button></div><p class="section-note">Texto claro. Ícones que reforçam a ação.</p></div></div>
-    </section>
+        <section id="buttons" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">03 / COMPONENTES</div
+              ><h2>Ações com intenção<span>.</span></h2
+              ><p>Explore as variantes e compare cada estado de interação.</p></div
+            ><button class="btn ghost small" data-snippet="buttons"
+              ><svg class="icon"><use href="#i-code" /></svg>Copiar estrutura</button
+            ></div
+          >
+          <div class="panel"
+            ><div class="panel-toolbar"
+              ><div class="tabs" role="tablist" aria-label="Variantes de botão" id="button-tabs"
+                ><button
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="button-preview"
+                  id="tab-primary"
+                  data-variant="primary"
+                  tabindex="0"
+                  >Primário</button
+                ><button
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="button-preview"
+                  id="tab-secondary"
+                  data-variant="secondary"
+                  tabindex="-1"
+                  >Secundário</button
+                ><button
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="button-preview"
+                  id="tab-ghost"
+                  data-variant="ghost"
+                  tabindex="-1"
+                  >Discreto</button
+                ></div
+              ><span class="label toolbar-note">PASSE O MOUSE · USE TAB · CLIQUE</span></div
+            ><div id="button-preview" role="tabpanel" aria-labelledby="tab-primary"
+              ><div class="state-grid" id="button-states"></div
+              ><div class="playground"
+                ><div
+                  ><span class="label">EXPERIMENTE DE VERDADE</span
+                  ><p>Clique para simular uma ação e seu carregamento.</p></div
+                ><div class="playground-actions"
+                  ><button class="btn primary" id="live-button"
+                    ><svg class="icon"><use href="#i-plus" /></svg>Comprar cripto</button
+                  ><div class="live-controls"
+                    ><label class="check-label"
+                      ><input type="checkbox" id="disable-live" />Desabilitar</label
+                    ><span id="live-button-state" role="status" aria-live="polite"
+                      >Estado: Padrão</span
+                    ></div
+                  ></div
+                ></div
+              ></div
+            ></div
+          >
+          <div class="button-extras"
+            ><div class="panel inset"
+              ><span class="label">TAMANHOS</span
+              ><div class="sample-row"
+                ><button class="btn primary small" data-demo-action>Pequeno</button
+                ><button class="btn primary" data-demo-action>Médio</button
+                ><button class="btn primary large" data-demo-action>Grande</button></div
+              ><p class="section-note">44 / 48 / 56 px · alvos confortáveis para toque.</p></div
+            ><div class="panel inset"
+              ><span class="label">COMPOSIÇÃO</span
+              ><div class="sample-row"
+                ><button class="btn secondary" data-demo-action
+                  ><svg class="icon"><use href="#i-plus" /></svg>Com ícone</button
+                ><button class="btn secondary" data-demo-action
+                  >Continuar<svg class="icon"><use href="#i-arrow" /></svg></button
+                ><button
+                  class="btn secondary icon-only"
+                  aria-label="Adicionar ativo, demonstração"
+                  data-demo-action
+                  ><svg class="icon"><use href="#i-plus" /></svg></button></div
+              ><p class="section-note">Texto claro. Ícones que reforçam a ação.</p></div
+            ></div
+          >
+        </section>
 
-    <section id="forms" class="book-section"><div class="section-head"><div><div class="section-kicker">04 / COMPONENTES</div><h2>Entradas sem dúvida<span>.</span></h2><p>Rótulos visíveis, orientações úteis e estados que comunicam.</p></div><span class="source-badge proposed">Estados propostos</span></div>
-      <div class="panel inset"><div class="field-grid"><div class="field"><span class="label state-label">PADRÃO</span><label for="field-name">Nome completo</label><input id="field-name" placeholder="Como podemos chamar você?" aria-describedby="field-name-help"><small id="field-name-help">Use o nome do seu documento.</small></div><div class="field"><span class="label state-label">FOCO · AMOSTRA VISUAL</span><label for="field-focus">Buscar ativo</label><div class="input-wrap focus-sample"><svg class="icon"><use href="#i-search"/></svg><input id="field-focus" placeholder="Bitcoin, Ethereum…" aria-describedby="field-focus-help"></div><small id="field-focus-help">O contorno sinaliza o campo ativo.</small></div><div class="field"><span class="label state-label">PREENCHIDO</span><label for="field-filled">Email</label><input id="field-filled" type="email" value="voce@exemplo.com" aria-describedby="field-filled-help"><small id="field-filled-help">Para receber atualizações.</small></div><div class="field error"><span class="label state-label">ERRO</span><label for="field-error">Email</label><input id="field-error" value="email-incompleto" aria-invalid="true" aria-describedby="email-error"><small id="email-error">Insira um email válido, como voce@exemplo.com.</small></div><div class="field success"><span class="label state-label">SUCESSO</span><label for="field-success">Código de verificação</label><div class="input-wrap"><input id="field-success" value="123456" aria-describedby="code-success"><svg class="icon"><use href="#i-check"/></svg></div><small id="code-success">Código validado · exemplo visual.</small></div><div class="field"><span class="label state-label">DESABILITADO</span><label for="field-disabled">Rede</label><input id="field-disabled" value="Ethereum (ERC-20)" disabled aria-describedby="field-disabled-help"><small id="field-disabled-help">Disponível após selecionar o ativo.</small></div></div></div>
-      <div class="controls-grid"><div class="panel inset"><span class="label">ESCOLHAS & PREFERÊNCIAS</span><label class="check-label"><input type="checkbox" checked><span>Receber atualizações de mercado</span></label><label class="check-label"><input type="checkbox"><span>Ativar alertas de preço</span></label><div class="radio-row"><label class="check-label"><input type="radio" name="currency" value="BRL" checked>BRL</label><label class="check-label"><input type="radio" name="currency" value="USD">USD</label></div><div class="switch-row"><label for="balance-switch">Mostrar saldo no card de carteira</label><input class="switch" role="switch" type="checkbox" id="balance-switch" checked></div></div><form class="panel inset" id="demo-form" novalidate><span class="label">VALIDAÇÃO INTERATIVA</span><div class="field"><label for="demo-email">Email de contato</label><input id="demo-email" type="email" placeholder="voce@exemplo.com" autocomplete="email" required aria-describedby="demo-email-message"><small id="demo-email-message">Experimente enviar com um email incompleto.</small></div><button class="btn secondary" type="submit">Validar email<svg class="icon"><use href="#i-arrow"/></svg></button><p class="section-note">Demonstração local. Nenhum dado é enviado.</p></form></div>
-    </section>
+        <section id="forms" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">04 / COMPONENTES</div
+              ><h2>Entradas sem dúvida<span>.</span></h2
+              ><p>Rótulos visíveis, orientações úteis e estados que comunicam.</p></div
+            ><span class="source-badge proposed">Estados propostos</span></div
+          >
+          <div class="panel inset"
+            ><div class="field-grid"
+              ><div class="field"
+                ><span class="label state-label">PADRÃO</span
+                ><label for="field-name">Nome completo</label
+                ><input
+                  id="field-name"
+                  placeholder="Como podemos chamar você?"
+                  aria-describedby="field-name-help"
+                /><small id="field-name-help">Use o nome do seu documento.</small></div
+              ><div class="field"
+                ><span class="label state-label">FOCO · AMOSTRA VISUAL</span
+                ><label for="field-focus">Buscar ativo</label
+                ><div class="input-wrap focus-sample"
+                  ><svg class="icon"><use href="#i-search" /></svg
+                  ><input
+                    id="field-focus"
+                    placeholder="Bitcoin, Ethereum…"
+                    aria-describedby="field-focus-help" /></div
+                ><small id="field-focus-help">O contorno sinaliza o campo ativo.</small></div
+              ><div class="field"
+                ><span class="label state-label">PREENCHIDO</span
+                ><label for="field-filled">Email</label
+                ><input
+                  id="field-filled"
+                  type="email"
+                  value="voce@exemplo.com"
+                  aria-describedby="field-filled-help"
+                /><small id="field-filled-help">Para receber atualizações.</small></div
+              ><div class="field error"
+                ><span class="label state-label">ERRO</span><label for="field-error">Email</label
+                ><input
+                  id="field-error"
+                  value="email-incompleto"
+                  aria-invalid="true"
+                  aria-describedby="email-error"
+                /><small id="email-error"
+                  >Insira um email válido, como voce@exemplo.com.</small
+                ></div
+              ><div class="field success"
+                ><span class="label state-label">SUCESSO</span
+                ><label for="field-success">Código de verificação</label
+                ><div class="input-wrap"
+                  ><input id="field-success" value="123456" aria-describedby="code-success" /><svg
+                    class="icon"
+                  >
+                    <use href="#i-check" /></svg></div
+                ><small id="code-success">Código validado · exemplo visual.</small></div
+              ><div class="field"
+                ><span class="label state-label">DESABILITADO</span
+                ><label for="field-disabled">Rede</label
+                ><input
+                  id="field-disabled"
+                  value="Ethereum (ERC-20)"
+                  disabled
+                  aria-describedby="field-disabled-help"
+                /><small id="field-disabled-help">Disponível após selecionar o ativo.</small></div
+              ></div
+            ></div
+          >
+          <div class="controls-grid"
+            ><div class="panel inset"
+              ><span class="label">ESCOLHAS & PREFERÊNCIAS</span
+              ><label class="check-label"
+                ><input type="checkbox" checked /><span
+                  >Receber atualizações de mercado</span
+                ></label
+              ><label class="check-label"
+                ><input type="checkbox" /><span>Ativar alertas de preço</span></label
+              ><div class="radio-row"
+                ><label class="check-label"
+                  ><input type="radio" name="currency" value="BRL" checked />BRL</label
+                ><label class="check-label"
+                  ><input type="radio" name="currency" value="USD" />USD</label
+                ></div
+              ><div class="switch-row"
+                ><label for="balance-switch">Mostrar saldo no card de carteira</label
+                ><input
+                  class="switch"
+                  role="switch"
+                  type="checkbox"
+                  id="balance-switch"
+                  checked /></div></div
+            ><form class="panel inset" id="demo-form" novalidate
+              ><span class="label">VALIDAÇÃO INTERATIVA</span
+              ><div class="field"
+                ><label for="demo-email">Email de contato</label
+                ><input
+                  id="demo-email"
+                  type="email"
+                  placeholder="voce@exemplo.com"
+                  autocomplete="email"
+                  required
+                  aria-describedby="demo-email-message"
+                /><small id="demo-email-message"
+                  >Experimente enviar com um email incompleto.</small
+                ></div
+              ><button class="btn secondary" type="submit"
+                >Validar email<svg class="icon"><use href="#i-arrow" /></svg></button
+              ><p class="section-note">Demonstração local. Nenhum dado é enviado.</p></form
+            ></div
+          >
+        </section>
 
-    <section id="data" class="book-section"><div class="section-head"><div><div class="section-kicker">05 / COMPONENTES</div><h2>Dados com contexto<span>.</span></h2><p>Cards, indicadores e tabelas que ajudam a decidir.</p></div><span class="badge neutral">DADOS FICTÍCIOS</span></div>
-      <div class="portfolio-grid"><article class="panel balance-card"><div class="card-top"><span>Saldo da carteira</span><svg class="icon muted"><use href="#i-wallet"/></svg></div><h3 id="portfolio-balance">R$ 24.850,00</h3><span class="trend positive">↗ +4,32% <span>nos últimos 30 dias</span></span><div class="card-actions"><button class="btn primary small" id="buy-open"><svg class="icon"><use href="#i-plus"/></svg>Comprar</button><button class="btn secondary small" id="deposit-demo">Depositar</button></div></article><article class="panel market-card"><div class="card-top"><span class="coin bitcoin">₿</span><span class="badge positive">↗ +2,45%</span></div><span class="muted">Bitcoin <span class="ticker">BTC</span></span><h3>R$ 352.480,00</h3><svg class="sparkline" role="img" viewBox="0 0 300 50" aria-label="Ilustração de variação positiva"><path d="M0 43 25 35 45 38 70 23 95 30 120 18 145 24 170 10 195 17 225 8 250 12 275 4 300 7"/></svg></article><article class="panel market-card"><div class="card-top"><span class="coin ethereum">Ξ</span><span class="badge negative">↘ −0,82%</span></div><span class="muted">Ethereum <span class="ticker">ETH</span></span><h3>R$ 18.920,00</h3><svg class="sparkline negative-line" role="img" viewBox="0 0 300 50" aria-label="Ilustração de variação negativa"><path d="M0 5 25 15 45 10 70 23 95 18 120 30 145 22 170 35 195 28 225 39 250 34 275 45 300 40"/></svg></article></div>
-      <div class="panel table-panel"><div class="panel-toolbar table-toolbar"><div class="tabs" role="tablist" aria-label="Dados da carteira" id="data-tabs"><button id="tab-assets" role="tab" aria-controls="data-panel" aria-selected="true" tabindex="0" data-view="assets">Seus ativos</button><button id="tab-history" role="tab" aria-controls="data-panel" aria-selected="false" tabindex="-1" data-view="history">Transações</button></div><div class="input-wrap table-search"><svg class="icon"><use href="#i-search"/></svg><input id="asset-search" aria-label="Filtrar ativos ou transações" placeholder="Buscar ativo…"></div></div><div id="data-panel" role="tabpanel" aria-labelledby="tab-assets"><div class="table-scroll" tabindex="0" role="region" aria-label="Tabela demonstrativa; role horizontalmente para ver todas as colunas"><table id="asset-table"><caption class="sr-only">Ativos fictícios para demonstrar o componente de tabela</caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div><div class="empty-state" id="empty-state" hidden><svg class="icon"><use href="#i-search"/></svg><h3>Nenhum resultado encontrado</h3><p>Tente outro nome ou símbolo de ativo.</p><button class="btn secondary small" id="clear-search">Limpar busca</button></div></div><div class="table-footer"><span id="result-count" role="status" aria-live="polite" aria-atomic="true"></span><span>Valores ilustrativos · BRL</span></div></div>
-    </section>
+        <section id="data" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">05 / COMPONENTES</div
+              ><h2>Dados com contexto<span>.</span></h2
+              ><p>Cards, indicadores e tabelas que ajudam a decidir.</p></div
+            ><span class="badge neutral">DADOS FICTÍCIOS</span></div
+          >
+          <div class="portfolio-grid"
+            ><article class="panel balance-card"
+              ><div class="card-top"
+                ><span>Saldo da carteira</span
+                ><svg class="icon muted"><use href="#i-wallet" /></svg></div
+              ><h3 id="portfolio-balance">R$ 24.850,00</h3
+              ><span class="trend positive">↗ +4,32% <span>nos últimos 30 dias</span></span
+              ><div class="card-actions"
+                ><button class="btn primary small" id="buy-open"
+                  ><svg class="icon"><use href="#i-plus" /></svg>Comprar</button
+                ><button class="btn secondary small" id="deposit-demo">Depositar</button></div
+              ></article
+            ><article class="panel market-card"
+              ><div class="card-top"
+                ><span class="coin bitcoin">₿</span
+                ><span class="badge positive">↗ +2,45%</span></div
+              ><span class="muted">Bitcoin <span class="ticker">BTC</span></span
+              ><h3>R$ 352.480,00</h3
+              ><svg
+                class="sparkline"
+                role="img"
+                viewBox="0 0 300 50"
+                aria-label="Ilustração de variação positiva"
+              >
+                <path
+                  d="M0 43 25 35 45 38 70 23 95 30 120 18 145 24 170 10 195 17 225 8 250 12 275 4 300 7"
+                /></svg></article
+            ><article class="panel market-card"
+              ><div class="card-top"
+                ><span class="coin ethereum">Ξ</span
+                ><span class="badge negative">↘ −0,82%</span></div
+              ><span class="muted">Ethereum <span class="ticker">ETH</span></span
+              ><h3>R$ 18.920,00</h3
+              ><svg
+                class="sparkline negative-line"
+                role="img"
+                viewBox="0 0 300 50"
+                aria-label="Ilustração de variação negativa"
+              >
+                <path
+                  d="M0 5 25 15 45 10 70 23 95 18 120 30 145 22 170 35 195 28 225 39 250 34 275 45 300 40"
+                /></svg></article
+          ></div>
+          <div class="panel table-panel"
+            ><div class="panel-toolbar table-toolbar"
+              ><div class="tabs" role="tablist" aria-label="Dados da carteira" id="data-tabs"
+                ><button
+                  id="tab-assets"
+                  role="tab"
+                  aria-controls="data-panel"
+                  aria-selected="true"
+                  tabindex="0"
+                  data-view="assets"
+                  >Seus ativos</button
+                ><button
+                  id="tab-history"
+                  role="tab"
+                  aria-controls="data-panel"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-view="history"
+                  >Transações</button
+                ></div
+              ><div class="input-wrap table-search"
+                ><svg class="icon"><use href="#i-search" /></svg
+                ><input
+                  id="asset-search"
+                  aria-label="Filtrar ativos ou transações"
+                  placeholder="Buscar ativo…" /></div></div
+            ><div id="data-panel" role="tabpanel" aria-labelledby="tab-assets"
+              ><div
+                class="table-scroll"
+                tabindex="0"
+                role="region"
+                aria-label="Tabela demonstrativa; role horizontalmente para ver todas as colunas"
+                ><table id="asset-table"
+                  ><caption class="sr-only"
+                    >Ativos fictícios para demonstrar o componente de tabela</caption
+                  ><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div
+              ><div class="empty-state" id="empty-state" hidden
+                ><svg class="icon"><use href="#i-search" /></svg><h3>Nenhum resultado encontrado</h3
+                ><p>Tente outro nome ou símbolo de ativo.</p
+                ><button class="btn secondary small" id="clear-search">Limpar busca</button></div
+              ></div
+            ><div class="table-footer"
+              ><span id="result-count" role="status" aria-live="polite" aria-atomic="true"></span
+              ><span>Valores ilustrativos · BRL</span></div
+            ></div
+          >
+        </section>
 
-    <section id="feedback" class="book-section"><div class="section-head"><div><div class="section-kicker">06 / COMPONENTES</div><h2>Uma resposta em cada etapa<span>.</span></h2><p>Informe, confirme e ajude a seguir em frente.</p></div><span class="source-badge proposed">Extensão da identidade</span></div>
-      <div class="feedback-grid"><div class="panel inset alert-list"><span class="label">ALERTAS & STATUS</span><div class="alert success"><svg class="icon"><use href="#i-check"/></svg><div><strong>Operação concluída</strong><p>Seu histórico foi atualizado.</p></div></div><div class="alert warning"><svg class="icon"><use href="#i-info"/></svg><div><strong>Aguardando confirmação</strong><p>Acompanhe o status da transação.</p></div></div><div class="alert danger"><svg class="icon"><use href="#i-info"/></svg><div><strong>Não foi possível continuar</strong><p>Confira os dados e tente novamente.</p></div></div><div class="badge-row"><span class="badge positive">● Concluído</span><span class="badge warning">◷ Pendente</span><span class="badge negative">× Falhou</span></div></div><div class="panel inset"><span class="label">TOAST & CONFIRMAÇÃO</span><h3 class="component-title">Feedback no momento certo.</h3><p class="muted component-copy">Uma confirmação breve para ações simples. Um modal para revisar os detalhes antes de continuar.</p><div class="sample-row"><button class="btn secondary" id="toast-demo">Exibir toast</button><button class="btn primary" id="modal-open">Abrir modal<svg class="icon"><use href="#i-arrow"/></svg></button></div><div class="skeleton-example"><span class="label">CARREGAMENTO</span><div class="skeleton-row" role="img" aria-label="Exemplo visual de carregamento"><div class="skeleton circle"></div><div><div class="skeleton line"></div><div class="skeleton line short"></div></div></div></div></div></div>
-      <div class="panel accordion-panel"><span class="label">ACORDEÃO · AJUDA CONTEXTUAL</span><details open><summary>Como usar esta biblioteca?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Compare os estados, experimente os componentes e copie as estruturas. Os tokens compartilhados mantêm cores, tipografia e medidas consistentes em novas telas.</p></details><details><summary>Quais estilos vêm do site original?<svg class="icon"><use href="#i-plus"/></svg></summary><p>O azul #0052FC, as superfícies escuras, a fonte Satoshi e a linguagem dos cantos arredondados. A escala operacional, os estados e as cores funcionais são propostas para evoluir a identidade no sistema.</p></details><details><summary>Os exemplos fazem operações reais?<svg class="icon"><use href="#i-plus"/></svg></summary><p>Todos os valores são fictícios. As interações funcionam apenas nesta página, sem enviar dados ou executar compras.</p></details></div>
-    </section>
+        <section id="feedback" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">06 / COMPONENTES</div
+              ><h2>Uma resposta em cada etapa<span>.</span></h2
+              ><p>Informe, confirme e ajude a seguir em frente.</p></div
+            ><span class="source-badge proposed">Extensão da identidade</span></div
+          >
+          <div class="feedback-grid"
+            ><div class="panel inset alert-list"
+              ><span class="label">ALERTAS & STATUS</span
+              ><div class="alert success"
+                ><svg class="icon"><use href="#i-check" /></svg
+                ><div
+                  ><strong>Operação concluída</strong><p>Seu histórico foi atualizado.</p></div
+                ></div
+              ><div class="alert warning"
+                ><svg class="icon"><use href="#i-info" /></svg
+                ><div
+                  ><strong>Aguardando confirmação</strong
+                  ><p>Acompanhe o status da transação.</p></div
+                ></div
+              ><div class="alert danger"
+                ><svg class="icon"><use href="#i-info" /></svg
+                ><div
+                  ><strong>Não foi possível continuar</strong
+                  ><p>Confira os dados e tente novamente.</p></div
+                ></div
+              ><div class="badge-row"
+                ><span class="badge positive">● Concluído</span
+                ><span class="badge warning">◷ Pendente</span
+                ><span class="badge negative">× Falhou</span></div
+              ></div
+            ><div class="panel inset"
+              ><span class="label">TOAST & CONFIRMAÇÃO</span
+              ><h3 class="component-title">Feedback no momento certo.</h3
+              ><p class="muted component-copy"
+                >Uma confirmação breve para ações simples. Um modal para revisar os detalhes antes
+                de continuar.</p
+              ><div class="sample-row"
+                ><button class="btn secondary" id="toast-demo">Exibir toast</button
+                ><button class="btn primary" id="modal-open"
+                  >Abrir modal<svg class="icon"><use href="#i-arrow" /></svg></button></div
+              ><div class="skeleton-example"
+                ><span class="label">CARREGAMENTO</span
+                ><div class="skeleton-row" role="img" aria-label="Exemplo visual de carregamento"
+                  ><div class="skeleton circle"></div
+                  ><div
+                    ><div class="skeleton line"></div
+                    ><div class="skeleton line short"></div></div></div></div></div
+          ></div>
+          <div class="panel accordion-panel"
+            ><span class="label">ACORDEÃO · AJUDA CONTEXTUAL</span
+            ><details open
+              ><summary
+                >Como usar esta biblioteca?<svg class="icon"><use href="#i-plus" /></svg></summary
+              ><p
+                >Compare os estados, experimente os componentes e copie as estruturas. Os tokens
+                compartilhados mantêm cores, tipografia e medidas consistentes em novas telas.</p
+              ></details
+            ><details
+              ><summary
+                >Quais estilos vêm do site original?<svg class="icon">
+                  <use href="#i-plus" /></svg></summary
+              ><p
+                >O azul #0052FC, as superfícies escuras, a fonte Satoshi e a linguagem dos cantos
+                arredondados. A escala operacional, os estados e as cores funcionais são propostas
+                para evoluir a identidade no sistema.</p
+              ></details
+            ><details
+              ><summary
+                >Os exemplos fazem operações reais?<svg class="icon">
+                  <use href="#i-plus" /></svg></summary
+              ><p
+                >Todos os valores são fictícios. As interações funcionam apenas nesta página, sem
+                enviar dados ou executar compras.</p
+              ></details
+            ></div
+          >
+        </section>
 
-    <section id="rules" class="book-section"><div class="section-head"><div><div class="section-kicker">07 / APLICAÇÃO</div><h2>Consistência é o detalhe<span>.</span></h2><p>Regras simples para uma experiência reconhecível em qualquer tela.</p></div></div><div class="rules-grid"><article class="panel inset"><span class="rule-number">01</span><h3>Uma ação principal.</h3><p>Reserve o azul para a ação mais importante de cada contexto. Use variantes secundárias para as demais escolhas.</p></article><article class="panel inset"><span class="rule-number">02</span><h3>Estados sempre claros.</h3><p>Combine cor com texto ou ícone. Preserve o foco visível e explique como corrigir os erros nos campos.</p></article><article class="panel inset"><span class="rule-number">03</span><h3>Espaço para os dados.</h3><p>Use a mesma escala de espaçamento. Alinhe números à direita e informe moeda, período e status.</p></article></div><div class="closing"><div><svg class="icon"><use href="#i-code"/></svg><div><strong>Uma base pronta para evoluir.</strong><p>Componentes em HTML, estilos compartilhados e interações em JavaScript.</p></div></div><button class="btn secondary" id="view-css">Ver tokens CSS<svg class="icon"><use href="#i-arrow"/></svg></button></div></section>
-    <section id="glass" class="book-section">
-      <div class="section-head"><div><div class="section-kicker">08 / COMPONENTES</div><h2>Glass com propósito<span>.</span></h2><p>Um painel delimitado sobre um fundo estático, como na seção de segurança da marca.</p></div><span class="source-badge">Amostra visual</span></div>
-      <div class="glass-stage">
-        <article class="glass-security" aria-labelledby="glass-title">
-          <h3 id="glass-title">Segurança e transparência<br>em primeiro lugar</h3>
-          <p>Operamos com processos verificados, KYC<br class="glass-desktop-break"> completo e auditorias independentes.</p>
-          <ul class="glass-assurances">
-            <li>Empresa registrada no Brasil desde 2021</li>
-            <li>KYC obrigatório</li>
-            <li>Custódia segura</li>
-            <li>Atendimento humano</li>
-            <li>Auditorias independentes no token EVA</li>
-          </ul>
-          <button class="btn primary large" data-demo-action><svg class="icon"><use href="#i-plus"/></svg>Comprar EVA</button>
-        </article>
-      </div>
-      <p class="section-note">Demonstração visual baseada na seção de segurança do site. O botão simula uma ação local.</p>
-    </section>
-    <footer><span>Frontrade Cryptos <span class="muted">/ Brand book & UI kit</span></span><span>Versão 0.2 · Outubro 2026</span></footer>
-  </main>
-</div>
-<div class="toast" id="toast" role="status" aria-live="polite" hidden><span class="toast-icon"><svg class="icon"><use href="#i-check"/></svg></span><span id="toast-text"></span><button class="icon-btn" id="toast-close" aria-label="Fechar notificação"><svg class="icon"><use href="#i-close"/></svg></button></div>
-<dialog id="trade-modal" class="modal" aria-labelledby="modal-title"><div class="modal-header"><span class="label">EXEMPLO DE CONFIRMAÇÃO</span><button class="icon-btn" data-close-dialog aria-label="Fechar modal"><svg class="icon"><use href="#i-close"/></svg></button></div><div class="modal-icon"><svg class="icon"><use href="#i-wallet"/></svg></div><h2 id="modal-title">Revise seu movimento.</h2><p class="muted">Uma prévia de como confirmar uma compra.</p><div class="trade-summary"><div><span>Ativo</span><strong>Bitcoin · BTC</strong></div><div><span>Valor da compra</span><strong>R$ 500,00</strong></div><div><span>Taxa ilustrativa</span><strong>R$ 5,00</strong></div><div><span>Total</span><strong>R$ 505,00</strong></div></div><p class="demo-note"><svg class="icon"><use href="#i-info"/></svg>Demonstração com dados fictícios.</p><div class="modal-actions"><button class="btn secondary" data-close-dialog>Cancelar</button><button class="btn primary" id="confirm-demo">Confirmar exemplo<svg class="icon"><use href="#i-check"/></svg></button></div></dialog>
-<dialog class="code-dialog" id="code-dialog" aria-labelledby="code-title"><div class="modal-header"><div><span class="label">PARA REPLICAR</span><h2 id="code-title">Código base</h2></div><button class="icon-btn" data-close-dialog aria-label="Fechar código"><svg class="icon"><use href="#i-close"/></svg></button></div><p class="muted" id="code-description">Use os tokens junto ao arquivo styles.css da biblioteca.</p><pre tabindex="0" role="region" aria-label="Código para copiar"><code id="code-content"></code></pre><div class="modal-actions"><button class="btn primary" id="copy-code"><svg class="icon"><use href="#i-copy"/></svg>Copiar código</button><button class="btn secondary" data-close-dialog>Fechar</button></div></dialog>
-</body></html>
+        <section id="rules" class="book-section"
+          ><div class="section-head"
+            ><div
+              ><div class="section-kicker">07 / APLICAÇÃO</div
+              ><h2>Consistência é o detalhe<span>.</span></h2
+              ><p>Regras simples para uma experiência reconhecível em qualquer tela.</p></div
+            ></div
+          ><div class="rules-grid"
+            ><article class="panel inset"
+              ><span class="rule-number">01</span><h3>Uma ação principal.</h3
+              ><p
+                >Reserve o azul para a ação mais importante de cada contexto. Use variantes
+                secundárias para as demais escolhas.</p
+              ></article
+            ><article class="panel inset"
+              ><span class="rule-number">02</span><h3>Estados sempre claros.</h3
+              ><p
+                >Combine cor com texto ou ícone. Preserve o foco visível e explique como corrigir os
+                erros nos campos.</p
+              ></article
+            ><article class="panel inset"
+              ><span class="rule-number">03</span><h3>Espaço para os dados.</h3
+              ><p
+                >Use a mesma escala de espaçamento. Alinhe números à direita e informe moeda,
+                período e status.</p
+              ></article
+            ></div
+          ><div class="closing"
+            ><div
+              ><svg class="icon"><use href="#i-code" /></svg
+              ><div
+                ><strong>Uma base pronta para evoluir.</strong
+                ><p>Componentes em HTML, estilos compartilhados e interações em JavaScript.</p></div
+              ></div
+            ><button class="btn secondary" id="view-css"
+              >Ver tokens CSS<svg class="icon"><use href="#i-arrow" /></svg></button></div
+        ></section>
+        <section id="glass" class="book-section">
+          <div class="section-head"
+            ><div
+              ><div class="section-kicker">08 / COMPONENTES</div
+              ><h2>Glass com propósito<span>.</span></h2
+              ><p
+                >Um painel delimitado sobre um fundo estático, como na seção de segurança da
+                marca.</p
+              ></div
+            ><span class="source-badge">Amostra visual</span></div
+          >
+          <div class="glass-stage">
+            <article class="glass-security" aria-labelledby="glass-title">
+              <h3 id="glass-title">Segurança e transparência<br />em primeiro lugar</h3>
+              <p
+                >Operamos com processos verificados, KYC<br class="glass-desktop-break" />
+                completo e auditorias independentes.</p
+              >
+              <ul class="glass-assurances">
+                <li>Empresa registrada no Brasil desde 2021</li>
+                <li>KYC obrigatório</li>
+                <li>Custódia segura</li>
+                <li>Atendimento humano</li>
+                <li>Auditorias independentes no token EVA</li>
+              </ul>
+              <button class="btn primary large" data-demo-action
+                ><svg class="icon"><use href="#i-plus" /></svg>Comprar EVA</button
+              >
+            </article>
+          </div>
+          <p class="section-note"
+            >Demonstração visual baseada na seção de segurança do site. O botão simula uma ação
+            local.</p
+          >
+        </section>
+        <footer
+          ><span>Frontrade Cryptos <span class="muted">/ Brand book & UI kit</span></span
+          ><span>Versão 0.2 · Outubro 2026</span></footer
+        >
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden
+      ><span class="toast-icon"
+        ><svg class="icon"><use href="#i-check" /></svg></span
+      ><span id="toast-text"></span
+      ><button class="icon-btn" id="toast-close" aria-label="Fechar notificação"
+        ><svg class="icon"><use href="#i-close" /></svg></button
+    ></div>
+    <dialog id="trade-modal" class="modal" aria-labelledby="modal-title"
+      ><div class="modal-header"
+        ><span class="label">EXEMPLO DE CONFIRMAÇÃO</span
+        ><button class="icon-btn" data-close-dialog aria-label="Fechar modal"
+          ><svg class="icon"><use href="#i-close" /></svg></button></div
+      ><div class="modal-icon"
+        ><svg class="icon"><use href="#i-wallet" /></svg></div
+      ><h2 id="modal-title">Revise seu movimento.</h2
+      ><p class="muted">Uma prévia de como confirmar uma compra.</p
+      ><div class="trade-summary"
+        ><div><span>Ativo</span><strong>Bitcoin · BTC</strong></div
+        ><div><span>Valor da compra</span><strong>R$ 500,00</strong></div
+        ><div><span>Taxa ilustrativa</span><strong>R$ 5,00</strong></div
+        ><div><span>Total</span><strong>R$ 505,00</strong></div></div
+      ><p class="demo-note"
+        ><svg class="icon"><use href="#i-info" /></svg>Demonstração com dados fictícios.</p
+      ><div class="modal-actions"
+        ><button class="btn secondary" data-close-dialog>Cancelar</button
+        ><button class="btn primary" id="confirm-demo"
+          >Confirmar exemplo<svg class="icon"><use href="#i-check" /></svg></button></div
+    ></dialog>
+    <dialog class="code-dialog" id="code-dialog" aria-labelledby="code-title"
+      ><div class="modal-header"
+        ><div><span class="label">PARA REPLICAR</span><h2 id="code-title">Código base</h2></div
+        ><button class="icon-btn" data-close-dialog aria-label="Fechar código"
+          ><svg class="icon"><use href="#i-close" /></svg></button></div
+      ><p class="muted" id="code-description"
+        >Use os tokens junto ao arquivo assets/css/styles.css da biblioteca.</p
+      >><pre
+        tabindex="0"
+        role="region"
+        aria-label="Código para copiar"
+      ><code id="code-content"></code></pre
+      ><div class="modal-actions"
+        ><button class="btn primary" id="copy-code"
+          ><svg class="icon"><use href="#i-copy" /></svg>Copiar código</button
+        ><button class="btn secondary" data-close-dialog>Fechar</button></div
+      ></dialog
+    >
+  </body></html
+>
