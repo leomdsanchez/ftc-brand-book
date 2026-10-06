@@ -60,7 +60,7 @@
 .state-cell .label { min-height: 34px; text-align: center; display: grid; place-items: center; letter-spacing: .6px; }
 /* Original-site hover: a skewed white band expands from the center. */
 .btn { font-size: 14px; position: relative; isolation: isolate; overflow: hidden; }
-.btn::after { content: ''; position: absolute; top: 0; left: 50%; width: calc(100% + 64px); height: 100%; z-index: -1; background: #fff; pointer-events: none; transform-origin: center; transform: translateX(-50%) skewX(-45deg) scaleX(0); transition: transform .12s ease; }
+.btn::after { content: ''; position: absolute; top: 0; left: 50%; width: calc(100% + 64px); height: 100%; z-index: -1; background: #fff; pointer-events: none; transform-origin: center; transform: translateX(-50%) skewX(-45deg) scaleX(0); transition: transform .24s ease-in-out; }
 .btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active) { color: #000; border-color: #fff; }
 .btn.state-hover:not(:disabled):not([aria-disabled="true"]):not([aria-busy="true"]):not(.state-pressed):not(:active)::after { transform: translateX(-50%) skewX(-45deg) scaleX(1); }
 .btn.small, .sample-row .btn, .button-extras .btn { font-size: 13px; }
@@ -483,7 +483,7 @@ footer { margin-top: 72px; padding: 28px 0 32px; border-color: #ffffff0d; font-s
 .type-specimen { background: radial-gradient(ellipse at 0% 100%, #ffffff05, transparent 75%); }
 .panel-toolbar { background: #ffffff02; }
 .btn {
-  transition: color .12s ease, border-color .12s ease, box-shadow .12s ease;
+  transition: color .24s ease-in-out, border-color .24s ease-in-out, box-shadow .24s ease-in-out;
 }
 .field > input, .input-wrap, textarea {
   transition: border-color .45s ease, box-shadow .6s ease, background-color .6s ease;
