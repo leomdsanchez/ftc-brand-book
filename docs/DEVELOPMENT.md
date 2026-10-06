@@ -17,11 +17,13 @@ O site é um documento HTML com uma folha de estilos e um script carregado com `
 | Textos, seções e ícones | `index.html` |
 | Cores, fontes e medidas | `assets/css/styles.css`, `:root` e `@font-face` |
 | Hover dos botões | `.btn::after`, seletores `:hover` e transição final de `.btn` |
+| Navegação original | `.brand-nav`, modo compacto e seletor de prévia em `#navigation` |
+| Catálogo | `#images`; manifesto em `assets/images/original/manifest.json`; gerador `scripts/catalog.py` |
 | Glass | `.glass-stage` / `.glass-security`; cenário em `assets/images/glass-crystals.svg` |
 | Dados e fluxos fictícios | `assets/js/app.js`, grupos botões, formulário e tabela |
 | Empacotamento | `scripts/build.py` |
 
-O hover atual expande o branco do centro para as laterais em −45°, com 240 ms e `ease-in-out` na entrada e na saída. O glass só existe no painel central de `#glass`. Não adicionar novamente canvas, fumaça, partículas em tela inteira ou animações de entrada/saída ligadas à rolagem. Movimento reduzido desativa animações e transições decorativas.
+O hover atual expande o branco do centro para as laterais em −45°, com 240 ms e `ease-in-out` na entrada e na saída. O glass fica delimitado ao painel central de `#glass` e à barra `.brand-nav` da prévia em `#navigation`. Não adicionar novamente canvas, fumaça, partículas em tela inteira ou animações de entrada/saída ligadas à rolagem. Movimento reduzido desativa animações e transições decorativas.
 
 ## Caminhos e cache
 
@@ -58,7 +60,7 @@ O navegador precisa suportar `<dialog>`, `inert`, `backdrop-filter`, propriedade
 
 ## Checklist de interface
 
-Antes de entregar, conferir as três variantes de botão, hover, teclado, pressionado, desabilitado e carregamento; validar o formulário, buscar/ordenar a tabela, abrir/fechar os modais e testar cópia/exportação. Conferir navegação no desktop e menu mobile, ausência de overflow horizontal e o único painel glass. Testar o HTML de `dist/` offline quando entregar esse arquivo.
+Antes de entregar, conferir as três variantes de botão, hover, teclado, pressionado, desabilitado e carregamento; validar o formulário, buscar/ordenar a tabela, abrir/fechar os modais e testar cópia/exportação. Conferir navegação no desktop e menu mobile, ausência de overflow horizontal e os efeitos glass delimitados aos exemplos. Validar também o menu do header original (incluindo Escape), os filtros e downloads do catálogo. Testar o HTML de `dist/` offline quando entregar esse arquivo.
 
 As revisões anteriores de acessibilidade e responsividade estão registradas em `history/REVISAO-v0.2.md`. Seus resultados são históricos, não garantias para alterações posteriores.
 

@@ -6,6 +6,7 @@ import re
 import zipfile
 
 from build import CSS_PATH, CSS_URL, HTML_OUTPUT, IMAGE_PATH, JS_PATH, ROOT, ZIP_OUTPUT, build, source_files
+from catalog import validate as validate_catalog
 
 
 class Document(HTMLParser):
@@ -47,6 +48,13 @@ def check_reference(reference, base, document=None):
 
 
 def verify():
+    catalog = validate_catalog()
+    source_text = (ROOT / "index.html").read_text(encoding="utf-8")
+    if source_text.count('data-image-category=') != len(catalog):
+        raise ValueError("Catalog HTML differs from the image manifest; run scripts/catalog.py")
+    for row in catalog:
+        if f'href="{row["file"]}"' not in source_text or f'src="{row["preview"]}"' not in source_text:
+            raise ValueError(f"Catalog entry missing from HTML: {row['file']}")
     source = Document((ROOT / "index.html").read_text(encoding="utf-8"))
     for reference in source.references:
         check_reference(reference, ROOT, source)

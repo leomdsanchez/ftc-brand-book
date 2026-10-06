@@ -13,14 +13,14 @@ ZIP_OUTPUT = DIST / "frontrade-ui-kit.zip"
 CSS_PATH = ROOT / "assets/css/styles.css"
 JS_PATH = ROOT / "assets/js/app.js"
 CSS_URL = re.compile(r"url\(\s*(['\"]?)(.*?)\1\s*\)")
-IMAGE_PATH = re.compile(r"assets/(?:images|icons)/[\w./-]+\.(?:webp|svg)")
+IMAGE_PATH = re.compile(r"assets/(?:images|icons)/[\w./-]+\.(?:webp|svg|png|jpe?g|avif|gif)")
 
 
 def source_files():
     """Package only maintained source, documentation and project configuration."""
     paths = [ROOT / name for name in ("index.html", "README.md", ".gitignore", ".editorconfig", ".prettierrc.json")]
     for directory, suffixes in (
-        ("assets", {".css", ".js", ".woff2", ".webp", ".svg"}),
+        ("assets", {".css", ".js", ".woff2", ".webp", ".svg", ".png", ".jpg", ".jpeg", ".avif", ".gif", ".json"}),
         ("docs", {".md", ".png"}),
         ("scripts", {".py"}),
     ):

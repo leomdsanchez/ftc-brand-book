@@ -4063,7 +4063,7 @@ footer {
   }
 }
 
-/* Opaque section surfaces. Only the security sample below uses glass. */
+/* Opaque section surfaces. Glass stays inside bounded component samples. */
 .overview,
 .book-section {
   border: 1px solid #ffffff17;
@@ -4303,5 +4303,296 @@ textarea:focus {
     font-size: 14px;
     padding: 14px 20px;
     min-height: 50px;
+  }
+}
+
+/* Original-site top navigation: blur is confined to this static sample bar. */
+.navigation-toolbar,
+.image-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.navigation-view,
+.image-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.navigation-view button,
+.image-filters button {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: #a4a4a4;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.navigation-view button[aria-pressed="true"],
+.image-filters button[aria-pressed="true"] {
+  background: #ffffff08;
+  border-color: #ffffff18;
+  color: #fff;
+}
+.navigation-view button:focus-visible,
+.image-filters button:focus-visible,
+.brand-nav a:focus-visible,
+.image-download:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 4px;
+}
+.navigation-preview {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 280px;
+  padding: 24px 20px;
+  margin-inline: auto;
+  border: 1px solid #ffffff12;
+  border-radius: 18px;
+  background: #050505;
+  overflow: hidden;
+}
+.navigation-preview--mobile {
+  max-width: 380px;
+  min-height: 330px;
+  padding: 18px 12px;
+}
+.navigation-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+}
+.brand-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid #ffffff0c;
+  border-radius: 15px;
+  background: #17171780;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.brand-nav-logo {
+  flex-shrink: 0;
+  line-height: 0;
+}
+.brand-nav-logo img {
+  display: block;
+  width: 104px;
+  height: auto;
+}
+.brand-nav-links {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.brand-nav a:not(.btn) {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+}
+.brand-nav-links a {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.brand-nav a:not(.btn):hover {
+  color: #a4a4a4;
+}
+.brand-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  font-size: 13px;
+}
+.brand-nav-actions .btn {
+  padding-inline: 20px;
+  min-width: 120px;
+  white-space: nowrap;
+}
+.brand-nav-links .brand-nav-mobile-login {
+  display: none;
+}
+.brand-nav[data-compact="true"] .brand-nav-login {
+  display: none;
+}
+.brand-nav[data-compact="true"] .brand-nav-links {
+  order: 4;
+  flex-basis: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding-top: 12px;
+  border-top: 1px solid #ffffff12;
+}
+.brand-nav[data-compact="true"] .brand-nav-links a {
+  display: block;
+  padding: 12px 4px;
+  font-size: 16px;
+}
+.brand-nav[data-compact="true"] {
+  gap: 8px;
+  padding: 10px;
+}
+.brand-nav[data-compact="true"] .brand-nav-actions .btn {
+  min-width: 0;
+  padding-inline: 12px;
+  font-size: 12px;
+}
+.brand-nav-toggle {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+}
+.brand-nav-links[hidden],
+.brand-nav-toggle[hidden],
+.image-card[hidden] {
+  display: none;
+}
+.navigation-caption {
+  padding: 44px 8px 16px;
+  text-align: center;
+}
+.navigation-caption p {
+  margin-top: 14px;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.4;
+  color: #a4a4a4;
+  letter-spacing: -0.025em;
+}
+.navigation-caption strong {
+  font-weight: 500;
+  color: #fff;
+}
+.navigation-specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  padding-top: 24px;
+}
+.navigation-specs p {
+  color: #a4a4a4;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+/* Original asset catalog. Preview images retain their aspect ratio. */
+#image-count {
+  color: #858585;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.image-catalog {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.image-card {
+  min-width: 0;
+  border: 1px solid #ffffff12;
+  border-radius: 14px;
+  background: #111;
+  overflow: hidden;
+}
+.image-card-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 172px;
+  padding: 12px;
+  background: #070707;
+  border-bottom: 1px solid #ffffff0c;
+}
+.image-card-preview--logos {
+  padding: 30px;
+  background: #1a1a1a;
+}
+.image-card-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.image-card-body {
+  padding: 18px;
+}
+.image-card h3 {
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin-top: 9px;
+}
+.image-card-body > p {
+  color: #858585;
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  margin-top: 6px;
+}
+.image-card-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  color: #a4a4a4;
+  margin: 20px 0 8px;
+}
+.image-download {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  border-top: 1px solid #ffffff12;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+}
+.image-download:hover {
+  color: #a4a4a4;
+}
+.image-download .icon {
+  width: 15px;
+  height: 15px;
+}
+@media (max-width: 1100px) {
+  .image-catalog {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .navigation-toolbar,
+  .image-toolbar {
+    flex-wrap: wrap;
+  }
+  .navigation-preview {
+    padding: 16px 10px;
+  }
+  .brand-nav-logo img {
+    width: 84px;
+  }
+  .navigation-specs,
+  .image-catalog {
+    grid-template-columns: 1fr;
+  }
+  .image-filters {
+    gap: 0;
+  }
+  .image-filters button {
+    padding-inline: 11px;
   }
 }

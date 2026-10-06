@@ -29,7 +29,7 @@ Abra http://localhost:3000. Edite `index.html` e os arquivos de `assets/`; o sit
 | `assets/css/styles.css` | Tokens, componentes, estados e responsividade; ordem da cascata preservada |
 | `assets/js/app.js` | Demonstrações, tabelas, modais, cópia, tokens e navegação |
 | `assets/fonts/` | Satoshi Regular, Medium e Bold |
-| `assets/images/` | Logotipo e cenário SVG estático do exemplo de glass |
+| `assets/images/` | Logotipo, cenário SVG de glass, originais do site e miniaturas locais |
 | `assets/icons/crypto/` | Logos SVG locais de Bitcoin, Ethereum e USDT |
 | `docs/` | Contrato atual, manutenção, proveniência e registros históricos |
 | `scripts/` | Build de entregáveis e verificação estrutural, com biblioteca padrão Python |
@@ -61,3 +61,5 @@ Saídas: `dist/frontrade-brand-book.html`, que abre offline com fontes/imagens i
 As alterações são publicadas por commit e push na `main`, mantendo `index.html` na raiz para o GitHub Pages existente. Após o push, acompanhe **Actions → pages build and deployment** e confira a URL publicada. Detalhes e checklist estão em [DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 Referência visual da marca: https://frontradecryptos.com/.
+
+A seção **Navegação do topo** demonstra o header da marca com menu adaptável. **Imagens & logos** reúne 34 arquivos encontrados no DOM e no CSS da página original, incluindo versões responsivas, filtros e download dos originais. A proveniência está em `assets/images/original/manifest.json`. Para regenerar a marcação do catálogo após atualizar o manifesto, execute `python3 scripts/catalog.py` e formate `index.html` conforme [DEVELOPMENT.md](docs/DEVELOPMENT.md).

@@ -442,6 +442,13 @@ ${tokenNames.map((name) => `  --${name}: ${computedTokens.getPropertyValue(`--${
   }
   $("#open-code").addEventListener("click", () => showCode("Tokens da identidade", tokenCSS));
   $("#view-css").addEventListener("click", () => showCode("Tokens CSS", tokenCSS));
+  $("#view-navigation").addEventListener("click", () =>
+    showCode(
+      "Navegação do topo",
+      $("#brand-nav-example").outerHTML,
+      "Use as classes brand-nav do CSS e os handlers de navegação do app.js. Ajuste IDs, links e caminhos para seu projeto.",
+    ),
+  );
   $('[data-snippet="buttons"]').addEventListener("click", () =>
     showCode(
       "Estrutura dos botões",
@@ -461,6 +468,78 @@ ${tokenNames.map((name) => `  --${name}: ${computedTokens.getPropertyValue(`--${
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast("Tokens CSS exportados.");
   });
+  // Original-site navigation sample. Reflow only on actual size changes.
+  const brandNav = $("#brand-nav-example");
+  const brandToggle = $(".brand-nav-toggle", brandNav);
+  const brandLinks = $("#brand-nav-links");
+  let brandNavWidth;
+  function closeBrandMenu() {
+    brandToggle.setAttribute("aria-expanded", "false");
+    brandToggle.setAttribute("aria-label", "Abrir menu do exemplo");
+    if (brandNav.dataset.compact === "true") brandLinks.hidden = true;
+  }
+  function syncBrandNavigation() {
+    const width = brandNav.getBoundingClientRect().width;
+    if (width === brandNavWidth) return;
+    brandNavWidth = width;
+    const compact = width < 820;
+    brandNav.dataset.compact = String(compact);
+    brandToggle.hidden = !compact;
+    closeBrandMenu();
+    brandLinks.hidden = compact;
+  }
+  brandToggle.addEventListener("click", () => {
+    const open = brandToggle.getAttribute("aria-expanded") !== "true";
+    brandToggle.setAttribute("aria-expanded", String(open));
+    brandToggle.setAttribute(
+      "aria-label",
+      open ? "Fechar menu do exemplo" : "Abrir menu do exemplo",
+    );
+    brandLinks.hidden = !open;
+  });
+  brandNav.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && brandToggle.getAttribute("aria-expanded") === "true") {
+      closeBrandMenu();
+      brandToggle.focus();
+    }
+  });
+  document.addEventListener("click", (e) => {
+    if (!brandNav.contains(e.target)) closeBrandMenu();
+  });
+  $$("a", brandLinks).forEach((link) => link.addEventListener("click", closeBrandMenu));
+  $$("[data-nav-view]").forEach((button) =>
+    button.addEventListener("click", () => {
+      $$("[data-nav-view]").forEach((other) =>
+        other.setAttribute("aria-pressed", String(other === button)),
+      );
+      $("#navigation-preview").classList.toggle(
+        "navigation-preview--mobile",
+        button.dataset.navView === "mobile",
+      );
+      syncBrandNavigation();
+    }),
+  );
+  new ResizeObserver(syncBrandNavigation).observe(brandNav);
+  syncBrandNavigation();
+
+  // The gallery uses static HTML and local, lazy-loaded previews; no runtime fetch.
+  const imageCards = $$("[data-image-category]");
+  $$("[data-image-filter]").forEach((button) =>
+    button.addEventListener("click", () => {
+      $$("[data-image-filter]").forEach((other) =>
+        other.setAttribute("aria-pressed", String(other === button)),
+      );
+      let count = 0;
+      imageCards.forEach((card) => {
+        card.hidden =
+          button.dataset.imageFilter !== "all" &&
+          card.dataset.imageCategory !== button.dataset.imageFilter;
+        if (!card.hidden) count++;
+      });
+      $("#image-count").textContent = `${count} arquivos`;
+    }),
+  );
+
   // Responsive navigation and current-section indicator.
   const menu = $("#menu-toggle");
   const mobileLayout = window.matchMedia("(max-width:760px)");
