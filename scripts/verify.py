@@ -5,7 +5,7 @@ from urllib.parse import unquote, urlsplit
 import re
 import zipfile
 
-from build import CSS_PATH, CSS_URL, HTML_OUTPUT, ROOT, ZIP_OUTPUT, build, source_files
+from build import CSS_PATH, CSS_URL, HTML_OUTPUT, IMAGE_PATH, JS_PATH, ROOT, ZIP_OUTPUT, build, source_files
 
 
 class Document(HTMLParser):
@@ -52,12 +52,16 @@ def verify():
         check_reference(reference, ROOT, source)
     for match in CSS_URL.finditer(CSS_PATH.read_text(encoding="utf-8")):
         check_reference(match.group(2), CSS_PATH.parent)
+    for match in IMAGE_PATH.finditer(JS_PATH.read_text(encoding="utf-8")):
+        check_reference(match.group(0), ROOT)
     for path in [ROOT / "README.md", *(ROOT / "docs").rglob("*.md")]:
         for reference in re.findall(r"\]\(([^)]+)\)", path.read_text(encoding="utf-8")):
             check_reference(reference, path.parent)
     build()
     html_bytes, zip_bytes = HTML_OUTPUT.read_bytes(), ZIP_OUTPUT.read_bytes()
     standalone = Document(html_bytes.decode("utf-8"))
+    if IMAGE_PATH.search(html_bytes.decode("utf-8")):
+        raise ValueError("Standalone HTML or JS still references a local image")
     if any(not resource.startswith("data:") for resource in standalone.resources):
         raise ValueError("Standalone HTML still loads an external resource")
     embedded_css = re.search(r"<style>(.*?)</style>", html_bytes.decode("utf-8"), re.S).group(1)

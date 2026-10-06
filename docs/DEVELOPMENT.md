@@ -50,7 +50,7 @@ Para formatar, substitua `--check` por `--write`. A sensibilidade estrita de whi
 
 ## Build e verificação estrutural
 
-`scripts/build.py` incorpora CSS, JavaScript, as três fontes, o logotipo e o cenário SVG em um HTML independente. Falha se os recursos esperados ou os pontos de inserção não forem encontrados. O ZIP inclui somente as pastas e extensões declaradas em `source_files()`, além dos arquivos de configuração explícitos. Ordem e metadados do ZIP são fixos, tornando execuções com os mesmos arquivos e ambiente reproduzíveis.
+`scripts/build.py` incorpora CSS, JavaScript, as três fontes, o logotipo, o cenário SVG e os logos de criptomoedas (inclusive referências no JavaScript) em um HTML independente. Falha se os recursos esperados ou os pontos de inserção não forem encontrados. O ZIP inclui somente as pastas e extensões declaradas em `source_files()`, além dos arquivos de configuração explícitos. Ordem e metadados do ZIP são fixos, tornando execuções com os mesmos arquivos e ambiente reproduzíveis.
 
 `scripts/verify.py` detecta caminhos locais quebrados no HTML/CSS/documentação, IDs duplicados, âncoras e referências acessíveis ausentes. Gera os entregáveis, verifica que o HTML não carrega recursos externos, compara cada membro do ZIP com sua origem e repete o build para conferir os bytes. Esses checks não substituem inspeção visual, interação em navegador ou testes de acessibilidade.
 

@@ -1254,26 +1254,12 @@ input:focus-visible {
   margin-top: 8px;
 }
 .coin {
-  display: grid;
-  place-items: center;
+  display: block;
+  flex-shrink: 0;
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  font-size: 25px;
-  font-weight: 700;
-}
-.bitcoin {
-  background: #ffb54718;
-  color: #f9b154;
-}
-.ethereum {
-  background: #8c9efc1f;
-  color: #a4b0ff;
-}
-.usdt {
-  background: #31d0aa20;
-  color: var(--success);
-  font-size: 19px;
+  object-fit: contain;
 }
 .sparkline {
   width: 100%;
@@ -1368,7 +1354,6 @@ th.number {
 .asset-name .coin {
   width: 30px;
   height: 30px;
-  font-size: 22px;
 }
 .asset-name strong {
   font-weight: 500;
@@ -1379,9 +1364,6 @@ th.number {
   display: block;
   color: #888;
   font-size: 10px;
-}
-.asset-name .usdt {
-  font-size: 17px;
 }
 .sort-btn {
   border: 0;
@@ -2345,7 +2327,6 @@ dialog::backdrop {
   .market-card .coin {
     height: 28px;
     width: 28px;
-    font-size: 22px;
   }
   .radius-list {
     gap: 17px;
@@ -3036,7 +3017,6 @@ main > section:focus {
   .market-card .coin {
     width: 33px;
     height: 33px;
-    font-size: 25px;
   }
   .radius-list {
     flex-wrap: wrap;

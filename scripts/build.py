@@ -13,6 +13,7 @@ ZIP_OUTPUT = DIST / "frontrade-ui-kit.zip"
 CSS_PATH = ROOT / "assets/css/styles.css"
 JS_PATH = ROOT / "assets/js/app.js"
 CSS_URL = re.compile(r"url\(\s*(['\"]?)(.*?)\1\s*\)")
+IMAGE_PATH = re.compile(r"assets/(?:images|icons)/[\w./-]+\.(?:webp|svg)")
 
 
 def source_files():
@@ -61,8 +62,15 @@ def render_html():
     logo = "assets/images/logo.webp"
     if html.count(logo) != 2:
         raise ValueError("Expected logo and favicon references")
-    html = html.replace(logo, data_uri(ROOT / logo))
-    script = JS_PATH.read_text(encoding="utf-8").replace("</script", "<\\/script")
+    def embed_image(match):
+        path = (ROOT / match.group(0)).resolve()
+        if not path.is_relative_to(ROOT / "assets"):
+            raise ValueError(f"Image outside assets/: {match.group(0)}")
+        return data_uri(path)
+
+    html = IMAGE_PATH.sub(embed_image, html)
+    script = IMAGE_PATH.sub(embed_image, JS_PATH.read_text(encoding="utf-8"))
+    script = script.replace("</script", "<\\/script")
     if html.count("</body>") != 1:
         raise ValueError("Expected one closing body tag")
     html = html.replace("</body>", "<script>" + script + "</script>\n</body>")

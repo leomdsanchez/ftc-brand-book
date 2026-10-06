@@ -231,8 +231,7 @@
     {
       name: "Bitcoin",
       symbol: "BTC",
-      coin: "₿",
-      cls: "bitcoin",
+      icon: "assets/icons/crypto/btc.svg",
       price: 352480,
       change: 2.45,
       amount: "0,0452 BTC",
@@ -241,8 +240,7 @@
     {
       name: "Ethereum",
       symbol: "ETH",
-      coin: "Ξ",
-      cls: "ethereum",
+      icon: "assets/icons/crypto/eth.svg",
       price: 18920,
       change: -0.82,
       amount: "0,3200 ETH",
@@ -251,8 +249,7 @@
     {
       name: "Tether",
       symbol: "USDT",
-      coin: "₮",
-      cls: "usdt",
+      icon: "assets/icons/crypto/usdt.svg",
       price: 5.42,
       change: 0.03,
       amount: "528,3229 USDT",
@@ -294,7 +291,7 @@
   $("#balance-switch").addEventListener("change", renderBalance);
   renderBalance();
   const assetCell = (a) =>
-    `<div class="asset-name"><span class="coin ${a.cls}">${a.coin}</span><div><strong>${a.name}</strong><small>${a.symbol}</small></div></div>`;
+    `<div class="asset-name"><img class="coin" src="${a.icon}" width="30" height="30" alt="" aria-hidden="true"><div><strong>${a.name}</strong><small>${a.symbol}</small></div></div>`;
   let view = "assets",
     sortDirection = 0;
   function renderData() {

@@ -30,6 +30,7 @@ Abra http://localhost:3000. Edite `index.html` e os arquivos de `assets/`; o sit
 | `assets/js/app.js` | Demonstrações, tabelas, modais, cópia, tokens e navegação |
 | `assets/fonts/` | Satoshi Regular, Medium e Bold |
 | `assets/images/` | Logotipo e cenário SVG estático do exemplo de glass |
+| `assets/icons/crypto/` | Logos SVG locais de Bitcoin, Ethereum e USDT |
 | `docs/` | Contrato atual, manutenção, proveniência e registros históricos |
 | `scripts/` | Build de entregáveis e verificação estrutural, com biblioteca padrão Python |
 | `dist/` | HTML independente e ZIP de fontes gerados; ignorados pelo Git |
