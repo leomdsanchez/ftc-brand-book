@@ -483,7 +483,11 @@ ${tokenNames.map((name) => `  --${name}: ${computedTokens.getPropertyValue(`--${
   }
   function syncBrandNavigation() {
     const mobile = navigationPreview.classList.contains("navigation-preview--mobile");
-    const viewport = mobile ? 390 : navigationDialog.open ? window.innerWidth : 1348;
+    const viewport = mobile
+      ? 390
+      : navigationDialog.open
+        ? document.documentElement.clientWidth
+        : 1348;
     const available = navigationPreview.clientWidth;
     if (!available) return;
     const key = `${viewport}/${available}/${navigationDialog.open}`;

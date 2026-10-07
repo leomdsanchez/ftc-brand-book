@@ -4530,7 +4530,7 @@ textarea:focus {
   display: none;
 }
 .navigation-dialog {
-  width: 100vw;
+  width: 100%;
   max-width: none;
   max-height: 90vh;
   padding: 24px;
