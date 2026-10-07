@@ -60,7 +60,7 @@ O navegador precisa suportar `<dialog>`, `inert`, `backdrop-filter`, propriedade
 
 ## Checklist de interface
 
-Antes de entregar, conferir as três variantes de botão, hover, teclado, pressionado, desabilitado e carregamento; validar o formulário, buscar/ordenar a tabela, abrir/fechar os modais e testar cópia/exportação. Conferir navegação no desktop e menu mobile, ausência de overflow horizontal e os efeitos glass delimitados aos exemplos. Validar também o menu do header original (incluindo Escape), os filtros e downloads do catálogo. Testar o HTML de `dist/` offline quando entregar esse arquivo.
+Antes de entregar, conferir as três variantes de botão, hover, teclado, pressionado, desabilitado e carregamento; validar o formulário, buscar/ordenar a tabela, abrir/fechar os modais e testar cópia/exportação. Conferir navegação no desktop e menu mobile, ausência de overflow horizontal e os efeitos glass delimitados aos exemplos. Validar também o menu do header original (incluindo Escape), a abertura/fechamento da prévia ampliada, os filtros e downloads do catálogo. Testar o HTML de `dist/` offline quando entregar esse arquivo.
 
 As revisões anteriores de acessibilidade e responsividade estão registradas em `history/REVISAO-v0.2.md`. Seus resultados são históricos, não garantias para alterações posteriores.
 

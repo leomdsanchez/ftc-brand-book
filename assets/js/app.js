@@ -472,17 +472,27 @@ ${tokenNames.map((name) => `  --${name}: ${computedTokens.getPropertyValue(`--${
   const brandNav = $("#brand-nav-example");
   const brandToggle = $(".brand-nav-toggle", brandNav);
   const brandLinks = $("#brand-nav-links");
-  let brandNavWidth;
+  const navigationPreview = $("#navigation-preview");
+  const navigationCanvas = $("#navigation-canvas");
+  const navigationDialog = $("#navigation-dialog");
+  let navigationLayoutKey;
   function closeBrandMenu() {
     brandToggle.setAttribute("aria-expanded", "false");
     brandToggle.setAttribute("aria-label", "Abrir menu do exemplo");
     if (brandNav.dataset.compact === "true") brandLinks.hidden = true;
   }
   function syncBrandNavigation() {
-    const width = brandNav.getBoundingClientRect().width;
-    if (width === brandNavWidth) return;
-    brandNavWidth = width;
-    const compact = width < 820;
+    const mobile = navigationPreview.classList.contains("navigation-preview--mobile");
+    const viewport = mobile ? 390 : navigationDialog.open ? window.innerWidth : 1348;
+    const available = navigationPreview.clientWidth;
+    if (!available) return;
+    const key = `${viewport}/${available}/${navigationDialog.open}`;
+    if (key === navigationLayoutKey) return;
+    navigationLayoutKey = key;
+    // Scale the whole reference viewport, never individual type or controls.
+    navigationCanvas.style.width = `${viewport}px`;
+    navigationCanvas.style.zoom = String(Math.min(1, available / viewport));
+    const compact = viewport <= 1024;
     brandNav.dataset.compact = String(compact);
     brandToggle.hidden = !compact;
     closeBrandMenu();
@@ -499,6 +509,8 @@ ${tokenNames.map((name) => `  --${name}: ${computedTokens.getPropertyValue(`--${
   });
   brandNav.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && brandToggle.getAttribute("aria-expanded") === "true") {
+      e.preventDefault();
+      e.stopPropagation();
       closeBrandMenu();
       brandToggle.focus();
     }
@@ -519,7 +531,18 @@ ${tokenNames.map((name) => `  --${name}: ${computedTokens.getPropertyValue(`--${
       syncBrandNavigation();
     }),
   );
-  new ResizeObserver(syncBrandNavigation).observe(brandNav);
+  $("#expand-navigation").addEventListener("click", () => {
+    navigationDialog.showModal();
+    $("#navigation-dialog-content").append(navigationPreview);
+    syncBrandNavigation();
+  });
+  navigationDialog.addEventListener("close", () => {
+    $("#navigation-preview-home").append(navigationPreview);
+    syncBrandNavigation();
+    $("#expand-navigation").focus();
+  });
+  new ResizeObserver(syncBrandNavigation).observe(navigationPreview);
+  window.addEventListener("resize", syncBrandNavigation);
   syncBrandNavigation();
 
   // The gallery uses static HTML and local, lazy-loaded previews; no runtime fetch.
