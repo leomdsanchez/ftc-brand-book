@@ -1,16 +1,16 @@
 # Origem e manutenção dos assets
 
-| Arquivos | Origem / finalidade |
-| --- | --- |
-| `assets/images/logo.webp` | Logotipo usado no site público da Frontrade Cryptos; preservado sem redesenho |
-| `assets/fonts/Satoshi-*.woff2` | Arquivos da família Satoshi usados na referência da marca: pesos 400, 500 e 700 |
-| `assets/images/glass-crystals.svg` | Ilustração estática criada para este exemplo de glass; não é uma imagem extraída da seção original |
-| `assets/icons/crypto/*.svg` | Logos coloridos BTC, ETH e USDT da coleção Cryptocurrency Icons; SVGs preservados sem alteração |
-| `assets/images/original/*` | 34 arquivos referenciados pelo DOM e CSS da homepage original em 06/10/2026; inclui variantes responsivas e favicons |
-| `assets/images/original/manifest.json` | URL de origem, finalidade, categoria, dimensões, tamanho e SHA-256 de cada original e prévia |
-| `assets/images/previews/original/*.webp` | Miniaturas derivadas dos originais maiores, com proporção preservada e limite de 640 × 360 px |
-| Sprite SVG de `index.html` | Ícones inline que acompanham os exemplos; não fazem requisições externas |
-| `docs/previews/*.png` | Capturas históricas da biblioteca antes das últimas revisões visuais |
+| Arquivos                                           | Origem / finalidade                                                                                                  |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `assets/images/logo.webp`                          | Logotipo usado no site público da Frontrade Cryptos; preservado sem redesenho                                        |
+| `assets/fonts/Satoshi-*.woff2`                     | Arquivos da família Satoshi usados na referência da marca: pesos 400, 500 e 700                                      |
+| `assets/images/original/2026-01-unnamed-file.webp` | Composição original da seção de segurança, usada nos cenários das amostras de glass e navegação                      |
+| `assets/icons/crypto/*.svg`                        | Logos coloridos BTC, ETH e USDT da coleção Cryptocurrency Icons; SVGs preservados sem alteração                      |
+| `assets/images/original/*`                         | 34 arquivos referenciados pelo DOM e CSS da homepage original em 06/10/2026; inclui variantes responsivas e favicons |
+| `assets/images/original/manifest.json`             | URL de origem, finalidade, categoria, dimensões, tamanho e SHA-256 de cada original e prévia                         |
+| `assets/images/previews/original/*.webp`           | Miniaturas derivadas dos originais maiores, com proporção preservada e limite de 640 × 360 px                        |
+| Sprite SVG de `index.html`                         | Ícones inline que acompanham os exemplos; não fazem requisições externas                                             |
+| `docs/previews/*.png`                              | Capturas históricas da biblioteca antes das últimas revisões visuais                                                 |
 
 Referência de origem da marca: https://frontradecryptos.com/. O logotipo e as fontes não incluem licença, arquivo mestre do logotipo ou documentação de cessão. Esta reorganização não atribui uma licença nova a esses recursos: confirme os termos com a marca e a origem da fonte antes de redistribuí-los fora deste projeto.
 

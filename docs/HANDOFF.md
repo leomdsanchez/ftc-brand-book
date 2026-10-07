@@ -8,22 +8,22 @@ O código reutilizável está em `index.html` e `assets/`; os entregáveis em `d
 
 ## Botões
 
-| Variante | Classe | Uso |
-| --- | --- | --- |
-| Primário | `btn primary` | Ação principal do contexto |
+| Variante   | Classe          | Uso                         |
+| ---------- | --------------- | --------------------------- |
+| Primário   | `btn primary`   | Ação principal do contexto  |
 | Secundário | `btn secondary` | Alternativa ou cancelamento |
-| Discreto | `btn ghost` | Ação de menor destaque |
+| Discreto   | `btn ghost`     | Ação de menor destaque      |
 
 Tamanhos: `small` (44 px), padrão (48 px) e `large` (56 px). `icon-only` exige um nome acessível via `aria-label`.
 
-| Estado | Gatilho real | Contrato |
-| --- | --- | --- |
-| Padrão | Sem interação | Mantém a variante |
-| Hover | Ponteiro com suporte a hover | Uma faixa branca inclinada em −45° se expande do centro para as duas bordas em 240 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
-| Pressionado | `:active` por mouse, toque ou teclado | Reforça a ativação até a liberação |
-| Foco | `:focus-visible` | Contorno externo de 2 px; preserva o fundo do estado atual |
-| Desabilitado | Atributo nativo `disabled` | Bloqueia ativação e mantém a aparência sob hover |
-| Carregando | `aria-busy="true"` e `aria-disabled="true"` | Comunica a espera, mantém o foco e exige bloqueio de novos disparos no handler |
+| Estado       | Gatilho real                                | Contrato                                                                                                                                                                                                                   |
+| ------------ | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Padrão       | Sem interação                               | Mantém a variante                                                                                                                                                                                                          |
+| Hover        | Ponteiro com suporte a hover                | Uma faixa branca inclinada em −45° se expande do centro para as duas bordas em 240 ms; texto e ícones ficam escuros. Reverte ao sair e respeita movimento reduzido; não sobrepõe pressionado, desabilitado ou carregamento |
+| Pressionado  | `:active` por mouse, toque ou teclado       | Reforça a ativação até a liberação                                                                                                                                                                                         |
+| Foco         | `:focus-visible`                            | Contorno externo de 2 px; preserva o fundo do estado atual                                                                                                                                                                 |
+| Desabilitado | Atributo nativo `disabled`                  | Bloqueia ativação e mantém a aparência sob hover                                                                                                                                                                           |
+| Carregando   | `aria-busy="true"` e `aria-disabled="true"` | Comunica a espera, mantém o foco e exige bloqueio de novos disparos no handler                                                                                                                                             |
 
 As classes `state-hover`, `state-pressed` e `state-focus` existem para as amostras da biblioteca. Em produção, use os estados nativos. Evite usar somente `aria-disabled` para bloquear uma ação: o atributo comunica o estado, mas não impede eventos.
 
@@ -68,13 +68,13 @@ A abertura usa uma hierarquia tipográfica mais forte, um card com planos sobrep
 
 ## Glass e foco nos campos
 
-O painel central da seção `#glass` demonstra glass com blur de 20 px, fundo preto com 20% de opacidade, cantos de 12 px e sem borda, conforme os estilos observados no site original. O painel permanece estático, inspirado na seção de segurança da marca. O fundo usa a ilustração SVG estática `assets/images/glass-crystals.svg`, sem animação ou overlay de tela inteira. A nova barra `.brand-nav` em `#navigation` também reproduz o blur local de 10 px observado no header original. Os dois efeitos ficam delimitados aos respectivos componentes, sem sobreposição. A abertura, as superfícies das seções, os cards internos, o cabeçalho e a navegação da própria biblioteca e os modais não usam desfoque de fundo. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 240 ms, com ease-in-out na entrada e na saída do hover; o movimento reduzido continua desativando animações.
+O painel central da seção `#glass` demonstra glass com blur de 20 px, fundo preto com 20% de opacidade, cantos de 12 px e sem borda, conforme os estilos observados no site original. O painel permanece estático, inspirado na seção de segurança da marca. O fundo usa a composição original de cristais `assets/images/original/2026-01-unnamed-file.webp`, também disponível no acervo, sem animação ou overlay de tela inteira. A nova barra `.brand-nav` em `#navigation` também reproduz o blur local de 10 px observado no header original. Os dois efeitos ficam delimitados aos respectivos componentes, sem sobreposição. A abertura, as superfícies das seções, os cards internos, o cabeçalho e a navegação da própria biblioteca e os modais não usam desfoque de fundo. Ao focar um campo de texto, aparece uma sombra branca suave via CSS, sem partículas. As cores de erro e sucesso permanecem visíveis. O preenchimento diagonal dos botões dura 240 ms, com ease-in-out na entrada e na saída do hover; o movimento reduzido continua desativando animações.
 
 ## Navegação do site original
 
-`#navigation` reproduz a barra `.brand-nav` medida no site original em 07/10/2026: altura 68 px, largura de 90% do viewport, logo de 135 px com margem esquerda de 25 px, links Satoshi 500 em 16/20 px e padding 1 × 13 px. Login usa Satoshi 700 em 16 px; o cadastro usa 16/16 px, padding 15 × 45 px, altura 46 px e raio 8 px. O grupo de ações tem 250 px, gap 10 px e um espaço de 185 px que centraliza o botão de aproximadamente 179,5 px. O hover dos links usa `#0083FD`. O preenchimento dos botões continua usando os 240 ms definidos para a biblioteca.
+`#navigation` reproduz a barra `.brand-nav` medida no site original em 07/10/2026: altura 68 px, largura de 90% do viewport, logo de 135 px com margem esquerda de 25 px, links Satoshi 500 em 16/20 px e padding 1 × 13 px. Login usa Satoshi 700 em 16 px; o cadastro usa 16/16 px, padding 15 × 45 px, altura 46 px e raio 8 px. O grupo de ações tem 250 px, gap 10 px e um espaço de 185 px que centraliza o botão de aproximadamente 179,5 px. O grupo de ações e o botão de menu compacto têm margem direita de 25 px para dar respiro dentro da barra. O hover dos links usa `#0083FD`. O preenchimento dos botões continua usando os 240 ms definidos para a biblioteca.
 
-O glass usa exatamente `rgba(23, 23, 23, 0.5)` e blur local de 10 px. Não há borda sólida: `::before` desenha apenas um contorno de 1 px por máscara, com dois gradientes radiais nos cantos inferiores. Cada gradiente parte de branco com 10% de opacidade e chega a transparente em 30%; o centro da borda desaparece. Sem sombra externa. Não substituir por uma borda uniforme ou um gradiente sobre toda a superfície.
+O glass usa exatamente `rgba(23, 23, 23, 0.5)` e blur local de 10 px. Não há borda sólida: `::before` desenha apenas um contorno de 1 px por máscara, com dois gradientes radiais nos cantos inferiores. Cada gradiente parte de branco com 10% de opacidade e chega a transparente em 30%; o centro da borda desaparece. A prévia usa a composição original de cristais como fundo estático, enquadrada em 35% na vertical para tornar o blur visível, com a imagem abaixo da barra na ordem de camadas. Sem sombra externa. Não substituir por uma borda uniforme ou um gradiente sobre toda a superfície.
 
 A prévia Desktop conserva um viewport interno de 1348 px e reduz o conjunto proporcionalmente com CSS `zoom`; o componente mantém suas medidas originais. Ampliar move o mesmo componente para um `dialog`, sem clonar IDs, e usa a largura real da janela. Fechar devolve a prévia ao lugar e o foco ao botão. A escala afeta somente a demonstração, não o componente copiado. A barra continua estática dentro do exemplo, sem se fixar sobre a biblioteca.
 

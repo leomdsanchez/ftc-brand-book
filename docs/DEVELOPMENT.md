@@ -12,16 +12,16 @@ O site é um documento HTML com uma folha de estilos e um script carregado com `
 
 ## Onde ajustar
 
-| Ajuste | Arquivo / ponto de entrada |
-| --- | --- |
-| Textos, seções e ícones | `index.html` |
-| Cores, fontes e medidas | `assets/css/styles.css`, `:root` e `@font-face` |
-| Hover dos botões | `.btn::after`, seletores `:hover` e transição final de `.btn` |
-| Navegação original | `.brand-nav`, modo compacto e seletor de prévia em `#navigation` |
-| Catálogo | `#images`; manifesto em `assets/images/original/manifest.json`; gerador `scripts/catalog.py` |
-| Glass | `.glass-stage` / `.glass-security`; cenário em `assets/images/glass-crystals.svg` |
-| Dados e fluxos fictícios | `assets/js/app.js`, grupos botões, formulário e tabela |
-| Empacotamento | `scripts/build.py` |
+| Ajuste                   | Arquivo / ponto de entrada                                                                                 |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| Textos, seções e ícones  | `index.html`                                                                                               |
+| Cores, fontes e medidas  | `assets/css/styles.css`, `:root` e `@font-face`                                                            |
+| Hover dos botões         | `.btn::after`, seletores `:hover` e transição final de `.btn`                                              |
+| Navegação original       | `.brand-nav`, modo compacto e seletor de prévia em `#navigation`                                           |
+| Catálogo                 | `#images`; manifesto em `assets/images/original/manifest.json`; gerador `scripts/catalog.py`               |
+| Glass                    | `.glass-stage` / `.glass-security`; cenário original em `assets/images/original/2026-01-unnamed-file.webp` |
+| Dados e fluxos fictícios | `assets/js/app.js`, grupos botões, formulário e tabela                                                     |
+| Empacotamento            | `scripts/build.py`                                                                                         |
 
 O hover atual expande o branco do centro para as laterais em −45°, com 240 ms e `ease-in-out` na entrada e na saída. O glass fica delimitado ao painel central de `#glass` e à barra `.brand-nav` da prévia em `#navigation`. Não adicionar novamente canvas, fumaça, partículas em tela inteira ou animações de entrada/saída ligadas à rolagem. Movimento reduzido desativa animações e transições decorativas.
 
